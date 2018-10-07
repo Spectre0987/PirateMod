@@ -1,0 +1,10 @@
+{
+    "variants":{
+        "inventory":{
+            "model":"pirates:cell"
+        },
+        "normal":{
+            "model":"pirates:cell"
+        }
+    }
+}

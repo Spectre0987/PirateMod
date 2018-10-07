@@ -1,0 +1,22 @@
+{
+    "type":"minecraft:crafting_shaped",
+    "pattern":[
+        "gpg",
+        "g g",
+        "lpl"
+    ],
+    "key":{
+        "g":{
+            "item":"minecraft:gold_ingot"
+        },
+        "p":{
+            "item":"minecraft:glass_pane"
+        },
+        "l":{
+            "item":"minecraft:leather"
+        }
+    },
+    "result":{
+        "item":"pirates:telescope"
+    }
+}

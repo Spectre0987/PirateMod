@@ -1,0 +1,31 @@
+{
+    "forge_marker": 1,
+    "defaults":{
+        "model":"pirates:log",
+        "textures":{
+            "side":"pirates:blocks/ghastly_log",
+            "top":"pirates:blocks/ghastly_log_top",
+            "bottom":"pirates:blocks/ghastly_log_top"
+        }
+    },
+    "variants":{
+        "normal":[{}],
+        "inventory":[{}],
+        "facing=north":{
+            "x": 90
+        },
+        "facing=east":{
+            "x": 90,
+            "y": 90
+        },
+        "facing=south":{
+            "x": 90
+        },
+        "facing=west":{
+            "x": 90,
+            "y": 90
+        },
+        "facing=up":[{}],
+        "facing=down":[{}]
+    }
+}

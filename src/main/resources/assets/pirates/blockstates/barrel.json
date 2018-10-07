@@ -1,0 +1,10 @@
+{
+    "variants":{
+        "normal":{
+            "model":"pirates:barrel"
+        },
+        "inventory":{
+            "model":"pirates:barrel"
+        }
+    }
+}

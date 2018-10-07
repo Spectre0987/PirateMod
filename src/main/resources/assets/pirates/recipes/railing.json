@@ -1,0 +1,25 @@
+{
+    "type":"minecraft:crafting_shaped",
+    "pattern":[
+        "lll",
+        "sss",
+        "ppp"
+    ],
+    "key":{
+        "l":{
+            "item":"minecraft:log",
+            "data": 0
+        },
+        "s":{
+            "item":"minecraft:stick"
+        },
+        "p":{
+            "item":"minecraft:planks",
+            "data": 0
+        }
+    },
+    "result":{
+        "item":"pirates:rail",
+        "count": 32
+    }
+}

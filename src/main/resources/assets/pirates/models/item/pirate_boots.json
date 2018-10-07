@@ -1,0 +1,14 @@
+{
+    "parent":"builtin/entity",
+    "display":{
+        "gui":{
+            "translation":[ 12, 10,0],
+            "rotation":[202.5,45,0]
+        },
+        "firstperson_righthand":{
+            "translation":[0,0,0],
+            "rotation":[202.5,45,0],
+            "scale":[0.5,0.5,0.5]
+        }
+    }
+}

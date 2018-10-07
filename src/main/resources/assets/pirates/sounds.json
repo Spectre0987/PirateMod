@@ -1,0 +1,16 @@
+{
+    "ship_bell":{
+        "category": "blocks",
+        "sounds":[{
+            "name":"pirates:ship_bell",
+            "stream": true
+        }]
+    },
+    "telescope_open":{
+        "category":"players",
+        "sounds":[{
+            "name":"pirates:telescope_open",
+            "stream": true
+        }]
+    }
+}

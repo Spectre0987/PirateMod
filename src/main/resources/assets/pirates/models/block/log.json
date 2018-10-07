@@ -1,0 +1,8 @@
+{
+    "parent":"block/cube_bottom_top",
+    "textures":{
+        "side":"blocks/oak_planks",
+        "top":"blocks/oak_planks",
+        "bottom":"blocks/oak_planks"
+    }
+}

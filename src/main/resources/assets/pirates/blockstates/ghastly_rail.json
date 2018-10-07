@@ -1,0 +1,42 @@
+{
+    "forge_marker": 1,
+    "defaults":{
+        "model":"pirates:ship_rail_end",
+        "textures":{
+            "0":"pirates:blocks/ghastly_planks",
+            "1":"pirates:blocks/ghastly_log",
+            "particle":"pirates:blocks/ghastly_planks"
+        }
+    },
+    "variants":{
+        "normal":[{}],
+        "inventory":[{}],
+        "end=false,facing=north":{
+            "model":"pirates:ship_rail"
+        },
+        "end=true,facing=north":{
+            "y": 0
+        },
+        "end=false,facing=south":{
+             "model":"pirates:ship_rail",
+             "y": 180
+        },
+        "end=true,facing=south":{
+             "y" : 180
+        },
+        "end=false,facing=east":{
+            "model":"pirates:ship_rail",
+            "y": 90
+        },
+        "end=true,facing=east":{
+             "y": 90
+        },
+        "end=false,facing=west":{
+             "model":"pirates:ship_rail",
+             "y" : 270
+        },
+        "end=true,facing=west":{
+             "y" : 270
+        }
+    }
+}

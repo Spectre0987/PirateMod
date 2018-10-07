@@ -1,0 +1,16 @@
+[
+{
+  "modid": "pirates",
+  "name": "Pirates Mod",
+  "description": "Mod adding pirates.",
+  "version": "0.0.1",
+  "mcversion": "1.12.2",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Spectre0987"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

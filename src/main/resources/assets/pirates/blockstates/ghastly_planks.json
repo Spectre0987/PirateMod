@@ -1,0 +1,13 @@
+{
+    "forge_marker": 1,
+    "defaults":{
+        "model":"pirates:full_block",
+        "textures":{
+            "all":"pirates:blocks/ghastly_planks"
+        }
+    },
+    "variants":{
+        "normal":[{}],
+        "inventory":[{}]
+    }
+}

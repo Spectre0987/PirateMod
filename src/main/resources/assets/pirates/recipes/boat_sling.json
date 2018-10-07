@@ -1,0 +1,20 @@
+{
+    "type":"minecraft:crafting_shaped",
+    "pattern":[
+        "ppp",
+        "p s",
+        "p s"
+    ],
+    "key":{
+        "p":{
+            "item":"minecraft:planks",
+            "data": 0
+        },
+        "s":{
+            "item":"minecraft:string"
+        }
+    },
+    "result":{
+        "item":"pirates:boat_sling"
+    }
+}

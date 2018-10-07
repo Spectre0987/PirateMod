@@ -1,0 +1,21 @@
+{
+    "type":"minecraft:crafting_shaped",
+    "pattern":[
+        "sss",
+        "sss",
+        "ppp"
+    ],
+    "key":{
+        "s":{
+            "item":"minecraft:string"
+        },
+        "p":{
+            "item":"minecraft:planks",
+            "data": 0
+        }
+    },
+    "result":{
+        "item":"pirates:ratlines",
+        "count": 32
+    }
+}

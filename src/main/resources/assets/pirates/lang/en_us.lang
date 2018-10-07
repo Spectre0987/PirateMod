@@ -1,0 +1,25 @@
+itemGroup.pirates=Pirates
+
+item.pirates.pirate_hat.name=Pirate Hat
+item.pirates.pirate_boots.name=Boots
+item.pirates.cutlass.name=Cutlass
+item.pirates.powder_flask.name=Powder Flask
+item.pirates.rum.name=Rum
+item.pirates.telescope.name=Telescope
+
+tile.pirates.cannon.name=Cannon
+tile.pirates.cell.name=Cell
+tile.pirates.rail.name=Railing
+tile.pirates.ratlines.name=Ratlines
+tile.pirates.ship_bell.name=Ship's Bell
+tile.pirates.boat_sling.name=Boat Sling
+tile.pirates.barrel.name=Barrel
+tile.pirates.ghastly_planks.name=Ghastly Planks
+tile.pirates.ghastly_rail.name=Ghastly Railing
+tile.pirates.ghastly_stairs.name=Ghastly Stairs
+tile.pirates.ghastly_log.name=Ghastly Log
+tile.pirates.ghastly_bell.name=Ghastly Bell
+
+
+pirates.worldgen=World Gen
+pirates.worldgen.chance=1 in _ chance for ships to spawn in an ocean

@@ -1,0 +1,39 @@
+{
+    "forge_marker": 1,
+    "defaults":{
+        "model":"pirates:ratlines_bottom"
+    },
+    "variants":{
+        "inventory":{
+            "model":"pirates:ratlines_bottom"
+        },
+        "normal":[{}],
+        "end=true,facing=north":{
+            "model":"pirates:ratlines_bottom"
+        },
+        "end=false,facing=north":{
+            "model":"pirates:ratlines_straight"
+        },
+        "end=true,facing=east":{
+            "y" : 90
+        },
+        "end=false,facing=east":{
+            "model":"pirates:ratlines_straight",
+            "y": 90
+        },
+        "end=true,facing=south":{
+            "y": 180
+        },
+        "end=false,facing=south":{
+            "model":"pirates:ratlines_straight",
+            "y": 180
+        },
+        "end=true,facing=west":{
+            "y": 270
+        },
+        "end=false,facing=west":{
+            "model":"pirates:ratlines_straight",
+            "y": 270
+        }
+    }
+}

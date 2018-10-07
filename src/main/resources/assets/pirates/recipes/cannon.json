@@ -1,0 +1,29 @@
+{
+    "type":"minecraft:crafting_shaped",
+    "pattern":[
+        "IIB",
+        "WWF",
+        "WSW"
+    ],
+    "key":{
+        "I":{
+            "item":"minecraft:iron_ingot"
+        },
+        "B":{
+            "item":"minecraft:iron_block"
+        },
+        "W":{
+            "item":"minecraft:planks",
+            "data": 0
+        },
+        "S":{
+            "item":"minecraft:stick"
+        },
+        "F":{
+            "item":"minecraft:flint_and_steel"
+        }
+    },
+    "result":{
+        "item":"pirates:cannon"
+    }
+}

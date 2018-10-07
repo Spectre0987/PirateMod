@@ -1,0 +1,23 @@
+{
+    "type":"minecraft:crafting_shaped",
+    "pattern":[
+        "ppp",
+        "pip",
+        "pnp"
+    ],
+    "key":{
+        "p":{
+            "item":"minecraft:planks",
+            "data": 0
+        },
+        "i":{
+            "item":"minecraft:iron_ingot"
+        },
+        "n":{
+            "item":"minecraft:iron_nugget"
+        }
+    },
+    "result":{
+        "item":"pirates:ship_bell"
+    }
+}

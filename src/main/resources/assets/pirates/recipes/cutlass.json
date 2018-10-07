@@ -1,0 +1,19 @@
+{
+    "type":"minecraft:crafting_shaped",
+    "pattern":[
+        " i",
+        "is",
+        "ii"
+    ],
+    "key":{
+        "i":{
+            "item":"minecraft:iron_ingot"
+        },
+        "s":{
+            "item":"minecraft:iron_sword"
+        }
+    },
+    "result":{
+        "item":"pirates:cutlass"
+    }
+}
