@@ -21,6 +21,7 @@ public class PItems {
 	public static Item powder_flask;
 	public static Item rum = register(new ItemRumBottle(), "rum");
 	public static Item telescope = register(new ItemTelescope(), "telescope");
+	public static Item lantern = register(new ItemLantern(), "lantern");
 	
 	public static void register() {
 		
