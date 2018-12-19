@@ -44,6 +44,7 @@ public class MessageSync implements IMessage{
 			Minecraft.getMinecraft().addScheduledTask(new Runnable() {
 				@Override
 				public void run() {
+					if(Minecraft.getMinecraft().world == null || Minecraft.getMinecraft().world.getPlayerEntityByUUID(message.playerID) == null) return;
 					CapabilityDrunk drunk = Minecraft.getMinecraft().world.getPlayerEntityByUUID(message.playerID).getCapability(DrunkStorage.DRUNK, null);
 					if(drunk != null) {
 						drunk.readNBT(message.tag);
