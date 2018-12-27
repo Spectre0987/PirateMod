@@ -31,6 +31,7 @@ import net.pirates.mod.proxy.ServerProxy;
 import net.pirates.mod.tileentity.TileEntityBarrel;
 import net.pirates.mod.tileentity.TileEntityBoatSling;
 import net.pirates.mod.tileentity.TileEntityCell;
+import net.pirates.mod.tileentity.TileEntityForge;
 import net.pirates.mod.worldgen.WorldGenShips;
 
 @Mod(modid = Pirate.MODID, name = Pirate.NAME, version = Pirate.VERSION)
@@ -69,6 +70,7 @@ public class Pirate
     	registerTileEntity(TileEntityCell.class, "cell");
     	registerTileEntity(TileEntityBoatSling.class, "boat_sling");
     	registerTileEntity(TileEntityBarrel.class, "barrel");
+    	registerTileEntity(TileEntityForge.class, "forge");
     	
     	proxy.preInit();
     	

@@ -6,6 +6,8 @@ item.pirates.cutlass.name=Cutlass
 item.pirates.powder_flask.name=Powder Flask
 item.pirates.rum.name=Rum
 item.pirates.telescope.name=Telescope
+item.pirates.ram_rod.name=Ram Rod
+item.pirates.lantern.name.name=Lantern
 
 tile.pirates.cannon.name=Cannon
 tile.pirates.cell.name=Cell
@@ -19,6 +21,7 @@ tile.pirates.ghastly_rail.name=Ghastly Railing
 tile.pirates.ghastly_stairs.name=Ghastly Stairs
 tile.pirates.ghastly_log.name=Ghastly Log
 tile.pirates.ghastly_bell.name=Ghastly Bell
+tile.pirates.forge.name=Forge
 
 
 pirates.worldgen=World Gen
