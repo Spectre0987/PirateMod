@@ -26,6 +26,7 @@ public class WorldGenShips implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 		BlockPos pos = getSurface(world, new BlockPos(chunkX * 16, 0, chunkZ * 16));
+		if(PirateConfig.worldGen == null || PirateConfig.worldGen.chance < 0) return;
 		if(random.nextInt(PirateConfig.worldGen.chance) == 26 && world.getBiome(pos).equals(Biomes.DEEP_OCEAN)) {
 			if(!world.isRemote) {
 				Template temp = ((WorldServer)world).getStructureTemplateManager().get(world.getMinecraftServer(), GHOST_SHIP/*random.nextInt(2) == 0 ? GHOST_SHIP : SHIP*/);
