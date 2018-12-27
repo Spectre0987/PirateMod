@@ -9,6 +9,8 @@ public class BlockBase extends Block{
 	public BlockBase(Material mat) {
 		super(mat);
 		this.setCreativeTab(Pirate.tab);
+		this.setHarvestLevel("axe", -1);
+		this.setHardness(2F);
 	}
 
 }
