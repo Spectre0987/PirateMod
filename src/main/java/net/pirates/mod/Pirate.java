@@ -21,6 +21,7 @@ import net.pirates.mod.blocks.PBlocks;
 import net.pirates.mod.capability.CapabilityDrunk;
 import net.pirates.mod.capability.DrunkStorage;
 import net.pirates.mod.capability.IDrunk;
+import net.pirates.mod.entity.EntityBottle;
 import net.pirates.mod.entity.EntityBullet;
 import net.pirates.mod.entity.EntityCannonball;
 import net.pirates.mod.entity.EntityPirate;
@@ -65,6 +66,7 @@ public class Pirate
     	PBlocks.register();
     	EntityHelper.registerProjectiles(EntityBullet.class, "bullet");
     	EntityHelper.registerProjectiles(EntityCannonball.class, "cannon_ball");
+    	EntityHelper.registerProjectiles(EntityBottle.class, "bottle");
     	EntityHelper.registerMobs(EntityPirate.class, "pirate");
     	
     	registerTileEntity(TileEntityCell.class, "cell");
