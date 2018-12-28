@@ -44,7 +44,7 @@ public class TileEntityCell extends TileEntity implements ITickable{
 	
 	@Nullable
 	public Entity getEntity() {
-		if(entity.hasNoTags()) return null;
+		if(entity.isEmpty()) return null;
 		Entity e = EntityList.createEntityByIDFromName(new ResourceLocation(entity.getString("entityID")), world);
 		e.readFromNBT(entity);
 		return e;

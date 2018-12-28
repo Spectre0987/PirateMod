@@ -6,6 +6,10 @@ item.pirates.cutlass.name=Cutlass
 item.pirates.powder_flask.name=Powder Flask
 item.pirates.rum.name=Rum
 item.pirates.telescope.name=Telescope
+item.pirates.map.name=Treasure Map
+item.pirates.compass.name=Compass
+item.pirates.message_bottle.name=Message in a bottle
+item.pirates.sextant.name=Sextant
 
 tile.pirates.cannon.name=Cannon
 tile.pirates.cell.name=Cell
@@ -19,7 +23,9 @@ tile.pirates.ghastly_rail.name=Ghastly Railing
 tile.pirates.ghastly_stairs.name=Ghastly Stairs
 tile.pirates.ghastly_log.name=Ghastly Log
 tile.pirates.ghastly_bell.name=Ghastly Bell
+tile.pirates.pirate_chest.name=Cursed Chest
 
+inventory.chest.pirate=Cursed Chest
 
 pirates.worldgen=World Gen
 pirates.worldgen.chance=1 in _ chance for ships to spawn in an ocean

@@ -6,6 +6,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -31,6 +32,7 @@ import net.pirates.mod.proxy.ServerProxy;
 import net.pirates.mod.tileentity.TileEntityBarrel;
 import net.pirates.mod.tileentity.TileEntityBoatSling;
 import net.pirates.mod.tileentity.TileEntityCell;
+import net.pirates.mod.tileentity.TileEntityPirateChest;
 import net.pirates.mod.worldgen.WorldGenShips;
 
 @Mod(modid = Pirate.MODID, name = Pirate.NAME, version = Pirate.VERSION)
@@ -57,8 +59,8 @@ public class Pirate
     {	
     	tab = new CreativeTabs(MODID) {
 			@Override
-			public ItemStack getTabIconItem() {
-				return new ItemStack(PItems.rum);
+			public ItemStack createIcon() {
+				return new ItemStack(PItems.sextant);
 			}};
     	PItems.register();
     	PBlocks.register();
@@ -69,6 +71,7 @@ public class Pirate
     	registerTileEntity(TileEntityCell.class, "cell");
     	registerTileEntity(TileEntityBoatSling.class, "boat_sling");
     	registerTileEntity(TileEntityBarrel.class, "barrel");
+    	registerTileEntity(TileEntityPirateChest.class, "pirate_chest");
     	
     	proxy.preInit();
     	
@@ -77,6 +80,11 @@ public class Pirate
     	CapabilityManager.INSTANCE.register(IDrunk.class, new DrunkStorage(), CapabilityDrunk::new);
     	
     	NETWORK.registerMessage(MessageSync.Handler.class, MessageSync.class, 0, Side.CLIENT);
+    	
+    	LootTableList.register(new ResourceLocation(MODID, "cursed_chest"));
+    	
+    	LootTableList.register(new ResourceLocation(MODID, "ghost_captain"));
+    	//LootTableList.register(new ResourceLocation(MODID, "ghost_chest"));
     }
 
 	@EventHandler

@@ -24,7 +24,7 @@ public class BlockLogs extends Block {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(FACING, EnumFacing.getFront(meta));
+		return this.getDefaultState().withProperty(FACING, EnumFacing.byIndex(meta));
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class BlockLogs extends Block {
 	}
 
 	@Override
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 

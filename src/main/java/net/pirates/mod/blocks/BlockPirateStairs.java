@@ -16,7 +16,7 @@ public class BlockPirateStairs extends BlockStairs {
 	}
 
 	@Override
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 

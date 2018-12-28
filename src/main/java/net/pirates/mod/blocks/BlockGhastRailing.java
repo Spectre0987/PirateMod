@@ -5,7 +5,7 @@ import net.minecraft.util.BlockRenderLayer;
 public class BlockGhastRailing extends BlockRailing {
 
 	@Override
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
 

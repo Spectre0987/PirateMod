@@ -21,6 +21,10 @@ public class PItems {
 	public static Item powder_flask;
 	public static Item rum = register(new ItemRumBottle(), "rum");
 	public static Item telescope = register(new ItemTelescope(), "telescope");
+	public static Item map = register(new ItemPirateMap(), "map");
+	public static Item message_bottle = register(new ItemMessageBottle(), "message_bottle");
+	public static Item compass = register(new ItemPirateCompass(), "compass");
+	public static Item sextant = register(new ItemSextant(), "sextant");
 	
 	public static void register() {
 		
@@ -38,7 +42,7 @@ public class PItems {
 	
 	public static Item register(Item item, String name) {
 		item.setRegistryName(new ResourceLocation(Pirate.MODID, name));
-		item.setUnlocalizedName(Pirate.MODID + "." + name);
+		item.setTranslationKey(Pirate.MODID + "." + name);
 		items.add(item);
 		return item;
 	}

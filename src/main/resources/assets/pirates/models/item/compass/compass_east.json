@@ -1,0 +1,6 @@
+{
+    "parent":"pirates:item/compass",
+    "textures":{
+        "0":"pirates:items/compass_east"
+    }
+}

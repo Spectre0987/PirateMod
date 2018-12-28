@@ -31,19 +31,19 @@ public class Helper {
 		return stack.getTagCompound();
 	}
 
-	public static void drawTexturedQuad(int x, int y, int width, int height) {
+	public static void drawTexturedQuad(double x, double y, double width, double height, double minU, double minV, double maxU, double maxV) {
 		GlStateManager.pushMatrix();
 		BufferBuilder bb = Tessellator.getInstance().getBuffer();
 		bb.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-		bb.pos(x, y, 0).tex(0, 0).endVertex();
-		bb.pos(x, y + height, 0).tex(0, 1).endVertex();
-		bb.pos(x + width, y + height, 0).tex(1, 1).endVertex();
-		bb.pos(x + width, y, 0).tex(1, 0).endVertex();
+		bb.pos(x, y, 0).tex(minU, minV).endVertex();
+		bb.pos(x, y + height, 0).tex(minU, maxV).endVertex();
+		bb.pos(x + width, y + height, 0).tex(maxU, maxV).endVertex();
+		bb.pos(x + width, y, 0).tex(maxU, minV).endVertex();
 		Tessellator.getInstance().draw();
 		GlStateManager.popMatrix();
 	}
 
-	public static void drawColoredQuad(int x, int y, int width, int height, float r, float g, float b) {
+	public static void drawColoredQuad(double x, double y, double width, double height, float r, float g, float b) {
 		GlStateManager.pushMatrix();
 		GlStateManager.disableTexture2D();
 		BufferBuilder bb = Tessellator.getInstance().getBuffer();

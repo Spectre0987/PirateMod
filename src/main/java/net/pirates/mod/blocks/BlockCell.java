@@ -51,7 +51,7 @@ public class BlockCell extends BlockContainer {
 	public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
 		super.onEntityWalk(worldIn, pos, entityIn);
 		TileEntityCell cell = (TileEntityCell) worldIn.getTileEntity(pos);
-		if(cell != null && cell.getEntityTag().hasNoTags() && !(entityIn instanceof EntityPlayer)) {
+		if(cell != null && cell.getEntityTag().isEmpty() && !(entityIn instanceof EntityPlayer)) {
 			cell.setEntity(entityIn);
 			entityIn.setDead();
 		}
@@ -71,10 +71,10 @@ public class BlockCell extends BlockContainer {
 	}
 
 	@Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-		super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
+	public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+		super.onEntityCollision(worldIn, pos, state, entityIn);
 		TileEntityCell cell = (TileEntityCell) worldIn.getTileEntity(pos);
-		if(cell != null && cell.getEntityTag().hasNoTags() && !(entityIn instanceof EntityPlayer)) {
+		if(cell != null && cell.getEntityTag().isEmpty() && !(entityIn instanceof EntityPlayer)) {
 			cell.setEntity(entityIn);
 			entityIn.setDead();
 		}

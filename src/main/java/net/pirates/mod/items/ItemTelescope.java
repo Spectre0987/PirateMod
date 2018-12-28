@@ -72,7 +72,7 @@ public class ItemTelescope extends Item {
 		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 	
-	@EventBusSubscriber(modid = Pirate.MODID)
+	@EventBusSubscriber(modid = Pirate.MODID, value = Side.CLIENT)
 	public static class Events{
 		
 		@SubscribeEvent
@@ -85,7 +85,6 @@ public class ItemTelescope extends Item {
 		
 		public static final ResourceLocation TELESCOPE_TEXTURE = new ResourceLocation(Pirate.MODID, "textures/overlay/telescope.png");
 		
-		@SideOnly(Side.CLIENT)
 		@SubscribeEvent
 		public static void renderOverlay(RenderGameOverlayEvent.Pre event) {
 			if(Minecraft.getMinecraft().player.getActiveItemStack().getItem() == PItems.telescope) {
@@ -98,7 +97,7 @@ public class ItemTelescope extends Item {
 				Helper.drawColoredQuad(0, posZ + width, event.getResolution().getScaledWidth(), event.getResolution().getScaledHeight(), 0, 0, 0);
 				Helper.drawColoredQuad(posX + width, 0, event.getResolution().getScaledWidth(), event.getResolution().getScaledHeight(), 0F, 0F, 0F);
 				Helper.drawColoredQuad(0, 0, event.getResolution().getScaledWidth(), posZ, 0, 0, 0);
-				Helper.drawTexturedQuad(posX, posZ, width, width);
+				Helper.drawTexturedQuad(posX, posZ, width, width, 0, 0, 1, 1);
 				GlStateManager.disableAlpha();
 				event.setCanceled(true);
 			}

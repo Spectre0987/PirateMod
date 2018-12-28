@@ -37,7 +37,7 @@ public class WorldGenShips implements IWorldGenerator {
 					if(chest != null) {
 						String name = map.get(cp);
 						if(name.equals("ghost_captian")) 
-							chest.setLootTable(new ResourceLocation("minecraft", "chests/end_city_treasure"), random.nextLong());
+							chest.setLootTable(new ResourceLocation(Pirate.MODID, "ghost_captain"), random.nextLong());
 						if(name.equals("ghost_chest"))
 							chest.setLootTable(new ResourceLocation("minecraft", "chests/simple_dungeon"), random.nextLong());
 					}

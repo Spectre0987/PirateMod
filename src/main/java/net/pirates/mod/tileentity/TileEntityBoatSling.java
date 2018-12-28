@@ -66,7 +66,7 @@ public class TileEntityBoatSling extends TileEntity implements ITickable{
 	
 	@Nullable
 	public Entity getBoat() {
-		if(boat.hasNoTags()) return null;
+		if(boat.isEmpty()) return null;
 		Entity e = EntityList.createEntityByIDFromName(new ResourceLocation(boat.getString("boatID")), world);
 		e.readFromNBT(boat);
 		e.setNoGravity(false);
@@ -94,6 +94,7 @@ public class TileEntityBoatSling extends TileEntity implements ITickable{
 			}
 		}
 		if(!world.isRemote && world.getWorldTime() % 20 == 0) {
+			if(world == null || this.getPos() == null) return;
 			for(EntityPlayerMP player : world.getEntitiesWithinAABB(EntityPlayerMP.class, Block.FULL_BLOCK_AABB.offset(getPos()).grow(20))) {
 				player.connection.sendPacket(this.getUpdatePacket());
 			}

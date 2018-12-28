@@ -30,7 +30,7 @@ public class BlockWood extends Block {
 	}
 
 	@Override
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return this == PBlocks.ghastly_planks ? BlockRenderLayer.TRANSLUCENT : BlockRenderLayer.SOLID;
 	}
 
