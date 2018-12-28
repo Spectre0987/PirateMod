@@ -3,12 +3,14 @@ package net.pirates.mod.proxy;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.pirates.mod.client.renderers.RenderBoatSling;
+import net.pirates.mod.client.renderers.RenderCannonball;
 import net.pirates.mod.client.renderers.RenderCell;
 import net.pirates.mod.client.renderers.RenderItemBoots;
 import net.pirates.mod.client.renderers.RenderItemHat;
 import net.pirates.mod.client.renderers.RenderShark;
 import net.pirates.mod.client.renderers.RendererInvis;
 import net.pirates.mod.entity.EntityBullet;
+import net.pirates.mod.entity.EntityCannonball;
 import net.pirates.mod.entity.EntityPirate;
 import net.pirates.mod.entity.EntityShark;
 import net.pirates.mod.items.PItems;
@@ -31,6 +33,7 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, RendererInvis::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityShark.class, RenderShark::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityPirate.class, RenderPirate::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityCannonball.class, RenderCannonball::new);
 	}
 
 }

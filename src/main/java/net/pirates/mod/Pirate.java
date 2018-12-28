@@ -32,6 +32,7 @@ import net.pirates.mod.packets.MessageSync;
 import net.pirates.mod.proxy.ServerProxy;
 import net.pirates.mod.tileentity.TileEntityBarrel;
 import net.pirates.mod.tileentity.TileEntityBoatSling;
+import net.pirates.mod.tileentity.TileEntityCannon;
 import net.pirates.mod.tileentity.TileEntityCell;
 import net.pirates.mod.tileentity.TileEntityForge;
 import net.pirates.mod.tileentity.TileEntityPirateChest;
@@ -76,6 +77,7 @@ public class Pirate
     	registerTileEntity(TileEntityBarrel.class, "barrel");
     	registerTileEntity(TileEntityPirateChest.class, "pirate_chest");
     	registerTileEntity(TileEntityForge.class, "forge");
+    	registerTileEntity(TileEntityCannon.class, "cannon");
     	
     	proxy.preInit();
     	
