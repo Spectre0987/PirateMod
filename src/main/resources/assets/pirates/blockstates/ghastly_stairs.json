@@ -1,8 +1,8 @@
 {
     "forge_marker": 1,
     "defaults":{
+        "model":"minecraft:oak_stairs",
         "textures":{
-            "model":"minecraft:oak_stairs",
             "bottom":"pirates:blocks/ghastly_planks",
             "top":"pirates:blocks/ghastly_planks",
             "side":"pirates:blocks/ghastly_planks"
@@ -10,6 +10,7 @@
     },
     "variants": {
         "normal":[{}],
+        "inventory":[{}],
         "facing=east,half=bottom,shape=straight":  { "model": "oak_stairs" },
         "facing=west,half=bottom,shape=straight":  { "model": "oak_stairs", "y": 180, "uvlock": true },
         "facing=south,half=bottom,shape=straight": { "model": "oak_stairs", "y": 90, "uvlock": true },
