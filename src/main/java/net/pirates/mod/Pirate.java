@@ -22,6 +22,7 @@ import net.pirates.mod.blocks.PBlocks;
 import net.pirates.mod.capability.CapabilityDrunk;
 import net.pirates.mod.capability.DrunkStorage;
 import net.pirates.mod.capability.IDrunk;
+import net.pirates.mod.entity.EntityBottle;
 import net.pirates.mod.entity.EntityBullet;
 import net.pirates.mod.entity.EntityCannonball;
 import net.pirates.mod.entity.EntityPirate;
@@ -33,6 +34,7 @@ import net.pirates.mod.tileentity.TileEntityBarrel;
 import net.pirates.mod.tileentity.TileEntityBoatSling;
 import net.pirates.mod.tileentity.TileEntityCell;
 import net.pirates.mod.tileentity.TileEntityPirateChest;
+import net.pirates.mod.tileentity.TileEntityForge;
 import net.pirates.mod.worldgen.WorldGenShips;
 
 @Mod(modid = Pirate.MODID, name = Pirate.NAME, version = Pirate.VERSION)
@@ -66,12 +68,14 @@ public class Pirate
     	PBlocks.register();
     	EntityHelper.registerProjectiles(EntityBullet.class, "bullet");
     	EntityHelper.registerProjectiles(EntityCannonball.class, "cannon_ball");
+    	EntityHelper.registerProjectiles(EntityBottle.class, "bottle");
     	EntityHelper.registerMobs(EntityPirate.class, "pirate");
     	
     	registerTileEntity(TileEntityCell.class, "cell");
     	registerTileEntity(TileEntityBoatSling.class, "boat_sling");
     	registerTileEntity(TileEntityBarrel.class, "barrel");
     	registerTileEntity(TileEntityPirateChest.class, "pirate_chest");
+    	registerTileEntity(TileEntityForge.class, "forge");
     	
     	proxy.preInit();
     	

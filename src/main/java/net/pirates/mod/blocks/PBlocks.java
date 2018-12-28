@@ -34,6 +34,7 @@ public class PBlocks {
 	public static Block ghastly_stairs = register(new BlockPirateStairs(ghastly_log.getDefaultState()), "ghastly_stairs");
 	public static Block ghastly_bell = register(new BlockGhostBell(), "ghastly_bell");
 	public static Block pirate_chest = register(new BlockPirateChest(), "pirate_chest");
+	public static Block forge = register(new BlockForge(), "forge");
 	
 	public static void register() {}
 	

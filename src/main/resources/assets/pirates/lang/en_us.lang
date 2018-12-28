@@ -10,6 +10,8 @@ item.pirates.map.name=Treasure Map
 item.pirates.compass.name=Compass
 item.pirates.message_bottle.name=Message in a bottle
 item.pirates.sextant.name=Sextant
+item.pirates.ram_rod.name=Ram Rod
+item.pirates.lantern.name.name=Lantern
 
 tile.pirates.cannon.name=Cannon
 tile.pirates.cell.name=Cell
@@ -24,6 +26,7 @@ tile.pirates.ghastly_stairs.name=Ghastly Stairs
 tile.pirates.ghastly_log.name=Ghastly Log
 tile.pirates.ghastly_bell.name=Ghastly Bell
 tile.pirates.pirate_chest.name=Cursed Chest
+tile.pirates.forge.name=Forge
 
 inventory.chest.pirate=Cursed Chest
 

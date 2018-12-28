@@ -25,6 +25,8 @@ public class PItems {
 	public static Item message_bottle = register(new ItemMessageBottle(), "message_bottle");
 	public static Item compass = register(new ItemPirateCompass(), "compass");
 	public static Item sextant = register(new ItemSextant(), "sextant");
+	public static Item lantern = register(new ItemLantern(), "lantern");
+	public static Item ram_rod = register(new ItemDamageable(250), "ram_rod");
 	
 	public static void register() {
 		
