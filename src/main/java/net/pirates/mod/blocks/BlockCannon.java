@@ -11,7 +11,8 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
@@ -68,11 +69,12 @@ public class BlockCannon extends BlockContainer {
 				cannon.setGunpowder(cannon.getGunpowder() + 1);
 				playerIn.getHeldItem(hand).shrink(1);
 			}
-			else if(held == Item.getItemFromBlock(Blocks.STONE) && cannon.isRammed() && !cannon.hasBall()) {
+			else if(held == Item.getItemFromBlock(PBlocks.cannonball) && cannon.isRammed() && !cannon.hasBall()) {
 				cannon.setHasBall(true);
 				playerIn.getHeldItem(hand).shrink(1);
 			}
 			else if(held == PItems.ram_rod && cannon.getGunpowder() > 0) {
+				playerIn.getHeldItem(hand).damageItem(1, playerIn);
 				cannon.setRammed(true);
 			}
 			else if(held == Items.FLINT_AND_STEEL && cannon.hasBall() && cannon.isRammed() && cannon.getGunpowder() > 0) {

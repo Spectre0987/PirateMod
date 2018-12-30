@@ -35,7 +35,9 @@ public class PBlocks {
 	public static Block ghastly_bell = register(new BlockGhostBell(), "ghastly_bell");
 	public static Block pirate_chest = register(new BlockPirateChest(), "pirate_chest");
 	public static Block forge = register(new BlockForge(), "forge");
+	public static Block cannonball = register(new BlockCannonball(), "cannonball");
 	
+	public static Block light_te = register(new BlockLight(), "light_te");
 	public static void register() {}
 	
 	public static Block register(Block item, String name) {
@@ -43,7 +45,8 @@ public class PBlocks {
 		item.setTranslationKey(Pirate.MODID + "." + name);
 		item.setRegistryName(loc);
 		BLOCKS.add(item);
-		PItems.items.add(new ItemBlock(item).setRegistryName(loc));
+		if(!(item instanceof INeedItem))PItems.items.add(new ItemBlock(item).setRegistryName(loc));
+		else PItems.items.add(((INeedItem)item).getItem().setRegistryName(loc));
 		return item;
 	}
 	
