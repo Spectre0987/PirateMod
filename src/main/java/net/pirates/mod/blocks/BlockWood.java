@@ -14,9 +14,9 @@ public class BlockWood extends Block {
 	public BlockWood() {
 		super(Material.WOOD);
 		this.setCreativeTab(Pirate.tab);
-		this.setHardness(1F);
+		this.setHardness(1.5F);
 		this.setResistance(1F);
-		this.setHarvestLevel("axe", 0);
+		this.setHarvestLevel("axe", -1);
 	}
 
 	@Override

@@ -13,6 +13,18 @@ public class BlockPirateStairs extends BlockStairs {
 	protected BlockPirateStairs(IBlockState modelState) {
 		super(modelState);
 		this.setCreativeTab(Pirate.tab);
+		this.setHardness(1.5F);
+		this.setHarvestLevel("axe", -1);
+	}
+
+	@Override
+	public boolean isNormalCube(IBlockState state) {
+		return false;
+	}
+
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
 	}
 
 	@Override
@@ -22,7 +34,7 @@ public class BlockPirateStairs extends BlockStairs {
 
 	@Override
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-		return blockAccess.getBlockState(pos.offset(side)).getBlock() == PBlocks.ghastly_stairs ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+		return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
 	}
 
 

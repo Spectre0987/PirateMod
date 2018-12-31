@@ -1,0 +1,21 @@
+{
+    "type":"minecraft:crafting_shaped",
+    "pattern":[
+        "sss",
+        "www",
+        "www"
+    ],
+    "key":{
+        "s":{
+            "item":"minecraft:stick"
+        },
+        "w":{
+            "item":"minecraft:wool",
+            "data": 32767
+        }
+    },
+    "result":{
+        "item":"pirates:square_sail",
+        "count": 16
+    }
+}

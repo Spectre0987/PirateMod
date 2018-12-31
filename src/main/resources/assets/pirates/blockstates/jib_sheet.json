@@ -7,6 +7,9 @@
         "inventory":{
             "model":"pirates:jib_sheet_bottom_end"
         },
+        "normal":{
+            "model":"pirates:jib_sheet_bottom_end"
+        },
         "sail":{
             "0":{},
             "1":{

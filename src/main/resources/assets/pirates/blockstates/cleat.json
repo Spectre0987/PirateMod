@@ -1,0 +1,28 @@
+{
+    "forge_marker": 1,
+    "defaults":{
+        "model":"pirates:cleat"
+    },
+    "variants":{
+        "inventory":[{}],
+        "normal":[{}],
+        "facing":{
+            "north":{
+                "y": 90
+            },
+            "south":{
+                "y": 90
+            },
+            "east":{
+                "y": 0
+            },
+            "west":{
+                "y": 0
+            },
+            "up":{
+                "x": 180
+            },
+            "down":{}
+        }
+    }
+}

@@ -29,8 +29,8 @@ public class BlockRailing extends BlockHorizontal {
 		this.setCreativeTab(Pirate.tab);
 		this.setLightOpacity(0);
 		this.setDefaultState(this.getDefaultState().withProperty(FACING, EnumFacing.NORTH));
-		this.setHarvestLevel("axe", 0);
-		this.setHardness(1F);
+		this.setHarvestLevel("axe", -1);
+		this.setHardness(1.5F);
 		this.setResistance(1F);
 	}
 

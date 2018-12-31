@@ -29,11 +29,13 @@ import net.pirates.mod.entity.EntityPirate;
 import net.pirates.mod.handlers.EntityHelper;
 import net.pirates.mod.items.PItems;
 import net.pirates.mod.packets.MessageSync;
+import net.pirates.mod.packets.MessageTESync;
 import net.pirates.mod.proxy.ServerProxy;
 import net.pirates.mod.tileentity.TileEntityBarrel;
 import net.pirates.mod.tileentity.TileEntityBoatSling;
 import net.pirates.mod.tileentity.TileEntityCannon;
 import net.pirates.mod.tileentity.TileEntityCell;
+import net.pirates.mod.tileentity.TileEntityCleat;
 import net.pirates.mod.tileentity.TileEntityForge;
 import net.pirates.mod.tileentity.TileEntityLight;
 import net.pirates.mod.tileentity.TileEntityPirateChest;
@@ -80,6 +82,7 @@ public class Pirate
     	registerTileEntity(TileEntityForge.class, "forge");
     	registerTileEntity(TileEntityCannon.class, "cannon");
     	registerTileEntity(TileEntityLight.class, "light_te");
+    	registerTileEntity(TileEntityCleat.class, "cleat");
     	
     	proxy.preInit();
     	
@@ -88,6 +91,7 @@ public class Pirate
     	CapabilityManager.INSTANCE.register(IDrunk.class, new DrunkStorage(), CapabilityDrunk::new);
     	
     	NETWORK.registerMessage(MessageSync.Handler.class, MessageSync.class, 0, Side.CLIENT);
+    	NETWORK.registerMessage(MessageTESync.Handler.class, MessageTESync.class, 1, Side.SERVER);
     	
     	LootTableList.register(new ResourceLocation(MODID, "cursed_chest"));
     	

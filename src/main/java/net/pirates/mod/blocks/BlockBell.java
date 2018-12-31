@@ -21,6 +21,8 @@ public class BlockBell extends BlockHorizontal {
 	public BlockBell() {
 		super(Material.IRON);
 		this.setCreativeTab(Pirate.tab);
+		this.setHardness(1F);
+		this.setHarvestLevel("axe", -1);
 	}
 	
 	@Override

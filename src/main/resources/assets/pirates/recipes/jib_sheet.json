@@ -1,0 +1,21 @@
+{
+    "type":"minecraft:crafting_shaped",
+    "pattern":[
+        "W  ",
+        "WW ",
+        "SSS"
+    ],
+    "key":{
+        "W":{
+            "item":"minecraft:wool",
+            "data" : 32767
+        },
+        "S":{
+            "item":"minecraft:stick"
+        }
+    },
+    "result":{
+        "item":"pirates:jib_sheet",
+        "count": 3
+    }
+}

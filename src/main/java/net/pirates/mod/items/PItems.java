@@ -28,6 +28,7 @@ public class PItems {
 	public static Item lantern = register(new ItemLantern(), "lantern");
 	public static Item ram_rod = register(new ItemDamageable(250), "ram_rod");
 	public static Item hurdy_gurdy = register(new ItemHurdyGurdy(), "hurdy_gurdy");
+	public static Item rope = register(new ItemRope(), "rope");
 	
 	public static void register() {
 		
