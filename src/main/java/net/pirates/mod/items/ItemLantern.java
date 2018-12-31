@@ -25,10 +25,8 @@ public class ItemLantern extends Item {
 	
 	public static void setupNewLantern(EntityPlayer player, ItemStack lantern) {
 		NBTTagCompound tag = Helper.getTag(lantern);
-		tag.setUniqueId("lantern_id", UUID.randomUUID());
 		tag.setBoolean("is_on", false);
 		lantern.setTagCompound(tag);
-		System.out.println(getLanternID(lantern));
 	}
 
 
@@ -38,11 +36,9 @@ public class ItemLantern extends Item {
 		setOn(stack, !isOn(stack));
 		if(!worldIn.isRemote && isOn(stack)) {
 			//Spawn lantern TE
-			System.out.println("Cat!");
 			worldIn.setBlockState(playerIn.getPosition().up(), PBlocks.light_te.getDefaultState());
 			TileEntityLight light = (TileEntityLight)worldIn.getTileEntity(playerIn.getPosition().up());
-			light.setPlayerID(playerIn.getUniqueID());
-			//if(light != null)
+			if(light != null)light.setPlayerID(playerIn.getUniqueID());
 		}
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
@@ -53,10 +49,6 @@ public class ItemLantern extends Item {
 	
 	public static void setOn(ItemStack stack, boolean isOn) {
 		Helper.getTag(stack).setBoolean("is_on", isOn);
-	}
-
-	public static UUID getLanternID(ItemStack stack) {
-		return Helper.getTag(stack).getUniqueId("lantern_id");
 	}
 
 	@Override

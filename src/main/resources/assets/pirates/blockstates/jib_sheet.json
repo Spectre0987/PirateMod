@@ -1,0 +1,37 @@
+{
+    "forge_marker": 1,
+    "defaults":{
+        "model":"pirates:jib_sheet"
+    },
+    "variants":{
+        "inventory":{
+            "model":"pirates:jib_sheet_bottom_end"
+        },
+        "sail":{
+            "0":{},
+            "1":{
+                "model":"pirates:jib_sheet_bottom_end"
+            },
+            "2":{
+                "model":"pirates:jib_sheet_bottom"
+            },
+            "3":{
+                "model":"pirates:jib_sheet_end"
+            }
+        },
+        "facing":{
+            "north":{
+                "y": 0
+            },
+            "east":{
+                "y": 90
+            },
+            "west":{
+                "y": 270
+            },
+            "south":{
+                "y": 180
+            }
+        }
+    }
+}

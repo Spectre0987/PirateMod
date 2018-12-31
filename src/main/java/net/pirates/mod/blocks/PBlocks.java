@@ -36,8 +36,11 @@ public class PBlocks {
 	public static Block pirate_chest = register(new BlockPirateChest(), "pirate_chest");
 	public static Block forge = register(new BlockForge(), "forge");
 	public static Block cannonball = register(new BlockCannonball(), "cannonball");
+	public static Block square_sail = register(new BlockSquareSail(), "square_sail");
+	public static Block jib_sheet = register(new BlockJibsheet(), "jib_sheet");
 	
 	public static Block light_te = register(new BlockLight(), "light_te");
+	
 	public static void register() {}
 	
 	public static Block register(Block item, String name) {

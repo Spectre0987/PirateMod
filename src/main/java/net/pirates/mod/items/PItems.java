@@ -21,12 +21,13 @@ public class PItems {
 	public static Item powder_flask;
 	public static Item rum = register(new ItemRumBottle(), "rum");
 	public static Item telescope = register(new ItemTelescope(), "telescope");
-	public static Item map = register(new ItemPirateMap(), "map");
-	public static Item message_bottle = register(new ItemMessageBottle(), "message_bottle");
+	//public static Item map = register(new ItemPirateMap(), "map");
+	//public static Item message_bottle = register(new ItemMessageBottle(), "message_bottle");
 	public static Item compass = register(new ItemPirateCompass(), "compass");
 	public static Item sextant = register(new ItemSextant(), "sextant");
 	public static Item lantern = register(new ItemLantern(), "lantern");
 	public static Item ram_rod = register(new ItemDamageable(250), "ram_rod");
+	public static Item hurdy_gurdy = register(new ItemHurdyGurdy(), "hurdy_gurdy");
 	
 	public static void register() {
 		

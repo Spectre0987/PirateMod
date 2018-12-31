@@ -7,8 +7,8 @@
     ],
     "key":{
         "p":{
-            "item":"minecraft:planks",
-            "data": 0
+            "type":"forge:ore_dict",
+            "ore":"plankWood"
         },
         "b":{
             "item":"minecraft:iron_bars"

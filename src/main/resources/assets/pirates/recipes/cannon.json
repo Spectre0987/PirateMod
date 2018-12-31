@@ -13,8 +13,8 @@
             "item":"minecraft:iron_block"
         },
         "W":{
-            "item":"minecraft:planks",
-            "data": 0
+            "type":"forge:ore_dict",
+            "ore":"plankWood"
         },
         "S":{
             "item":"minecraft:stick"

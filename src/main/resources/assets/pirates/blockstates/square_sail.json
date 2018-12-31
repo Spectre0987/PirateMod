@@ -1,0 +1,32 @@
+{
+    "forge_marker": 1,
+    "defaults":{
+        "model":"pirates:sail_square_top"
+    },
+    "variants":{
+        "inventory":[{}],
+        "normal":[{}],
+        "facing":{
+            "north":{
+                "y" : 180
+            },
+            "south":{
+                "y": 0
+            },
+            "east":{
+                "y": 270
+            },
+            "west":{
+                "y": 90
+            }
+        },
+        "top":{
+            "true":{
+                "model":"pirates:sail_square_top"
+            },
+            "false":{
+                "model":"pirates:sail_square"
+            }
+        }
+    }
+}

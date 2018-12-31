@@ -1,0 +1,24 @@
+{
+    "type":"minecraft:crafting_shaped",
+    "pattern":[
+        "iii",
+        "ptp",
+        "iii"
+    ],
+    "key":{
+        "i":{
+            "type":"forge:ore_dict",
+            "ore":"ingotIron"
+        },
+        "p":{
+            "type":"forge:ore_dict",
+            "ore":"paneGlass"
+        },
+        "t":{
+            "item":"minecraft:torch"
+        }
+    },
+    "result":{
+        "item":"pirates:lantern"
+    }
+}

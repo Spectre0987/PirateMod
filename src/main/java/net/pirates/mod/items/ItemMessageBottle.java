@@ -20,7 +20,7 @@ public class ItemMessageBottle extends Item {
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		if(!worldIn.isRemote) {
 			playerIn.getHeldItem(handIn).shrink(1);
-			InventoryHelper.spawnItemStack(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, new ItemStack(PItems.map));
+		//	InventoryHelper.spawnItemStack(worldIn, playerIn.posX, playerIn.posY, playerIn.posZ, new ItemStack(PItems.map));
 		}
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}

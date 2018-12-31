@@ -22,7 +22,6 @@ public class TileEntityLight extends TileEntity implements ITickable{
 	@Override
 	public void update() {
 		if(!world.isRemote) {
-			System.out.println("Update!");
 			if(playerID == null) {
 				world.setBlockToAir(getPos());
 				return;
@@ -32,13 +31,11 @@ public class TileEntityLight extends TileEntity implements ITickable{
 				world.setBlockToAir(getPos());
 				return;
 			}
-			System.out.println("Player exists");
 			ItemStack held = player.getHeldItemMainhand().getItem() == PItems.lantern ? player.getHeldItemMainhand() : player.getHeldItemOffhand();
 			if(held.getItem() != PItems.lantern || !ItemLantern.isOn(held)){
 				world.setBlockToAir(getPos());
 				return;
 			}
-			System.out.println("Lantern is in hand!");
 			BlockPos lPos = player.getPosition().up();
 			if(!lPos.equals(this.getPos()) && world.isAirBlock(lPos)) {
 				world.setBlockState(lPos, PBlocks.light_te.getDefaultState(), 2);
@@ -47,6 +44,7 @@ public class TileEntityLight extends TileEntity implements ITickable{
 					light.setPlayerID(this.getPlayerID());
 				}
 				world.setBlockToAir(getPos());
+				world.checkLight(lPos);
 				return;
 			}
 		}

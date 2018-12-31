@@ -12,6 +12,7 @@ item.pirates.message_bottle.name=Message in a bottle
 item.pirates.sextant.name=Sextant
 item.pirates.ram_rod.name=Ram Rod
 item.pirates.lantern.name=Lantern
+item.pirates.hurdy_gurdy.name=Hurdy Gurdy
 
 tile.pirates.cannon.name=Cannon
 tile.pirates.cell.name=Cell
@@ -28,6 +29,8 @@ tile.pirates.ghastly_bell.name=Ghastly Bell
 tile.pirates.pirate_chest.name=Cursed Chest
 tile.pirates.forge.name=Forge
 tile.pirates.cannonball.name=Cannonball
+tile.pirates.square_sail.name=Square Sail
+tile.pirates.jib_sheet.name=Jib Sheet
 
 inventory.chest.pirate=Cursed Chest
 
