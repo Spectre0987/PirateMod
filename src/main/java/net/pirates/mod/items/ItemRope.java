@@ -23,7 +23,7 @@ public class ItemRope extends Item {
 	}
 
 	public static Vec3d getPos(ItemStack stack) {
-		if(stack.getTagCompound() != null) {
+		if(stack.getTagCompound() != null && stack.getTagCompound().hasKey("x")) {
 			NBTTagCompound tag = stack.getTagCompound();
 			return new Vec3d(tag.getDouble("x"), tag.getDouble("y"), tag.getDouble("z"));
 		}
