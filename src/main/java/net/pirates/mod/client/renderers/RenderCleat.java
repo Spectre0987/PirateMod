@@ -24,7 +24,7 @@ public class RenderCleat extends TileEntitySpecialRenderer<TileEntityCleat> {
 		BufferBuilder bb = Tessellator.getInstance().getBuffer();
 		this.bindTexture(TEXTURE);
 		double tx = te.getPos().getX() + 0.5, ty = te.getPos().getY() + 0.5, tz = te.getPos().getZ() + 0.5;
-		ModelUtil.renderRope(0, 0, 0, 0, 1, 1.2, 0.1);
+		ModelUtil.renderRope(0, 0, 0, -2, 1, 0, 0.1);
 		GlStateManager.popMatrix();
 	}
 

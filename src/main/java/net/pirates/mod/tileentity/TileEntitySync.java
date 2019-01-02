@@ -38,8 +38,8 @@ public abstract class TileEntitySync extends TileEntity{
 	@Override
 	public void markDirty() {
 		super.markDirty();
-		if(world.isRemote) {
-			Pirate.NETWORK.sendToServer(new MessageTESync(this.getPos(), Minecraft.getMinecraft().player.getUniqueID()));
+		if(!world.isRemote) {
+			Pirate.NETWORK.sendToDimension(new MessageTESync(this.getPos()), world.provider.getDimension());
 		}
 	}
 

@@ -24,6 +24,10 @@ public class MessageTESync implements IMessage{
 		this.player = playerID;
 	}
 	
+	public MessageTESync(BlockPos pos){
+		this.pos = pos;
+	}
+	
 	@Override
 	public void fromBytes(ByteBuf buf) {
 		pos = BlockPos.fromLong(buf.readLong());
@@ -44,7 +48,8 @@ public class MessageTESync implements IMessage{
 				@Override
 				public void run() {
 					WorldServer ws = ctx.getServerHandler().player.getServerWorld();
-					EntityPlayerMP player = (EntityPlayerMP)ws.getPlayerEntityByUUID(mes.player);
+					if(!ws.isBlockLoaded(mes.pos)) return;
+					EntityPlayerMP player = mes.player == null ? ctx.getServerHandler().player : (EntityPlayerMP)ws.getPlayerEntityByUUID(mes.player);
 					TileEntitySync sync = (TileEntitySync)ws.getTileEntity(mes.pos);
 					if(player != null && sync != null) {
 						player.connection.sendPacket(sync.getUpdatePacket());
