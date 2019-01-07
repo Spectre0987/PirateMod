@@ -1,0 +1,35 @@
+itemGroup.pirates=Pirates
+
+item.pirates.pirate_hat.name=Chapeau de pirate
+item.pirates.pirate_boots.name=Bottes
+item.pirates.cutlass.name=Coutelas
+item.pirates.powder_flask.name=Flacon à poudre
+item.pirates.rum.name=Rhum
+item.pirates.telescope.name=Télescope
+item.pirates.map.name=Carte au trésor
+item.pirates.compass.name=Boussole
+item.pirates.message_bottle.name=Message dans une bouteille
+item.pirates.sextant.name=Sextant
+item.pirates.ram_rod.name=Tige de bélier
+item.pirates.lantern.name=Lanterne
+
+tile.pirates.cannon.name=Canon
+tile.pirates.cell.name=Cellule
+tile.pirates.rail.name=Garde-corps
+tile.pirates.ratlines.name=Lignes de rat
+tile.pirates.ship_bell.name=Cloche de navire
+tile.pirates.boat_sling.name=Harnais bateau
+tile.pirates.barrel.name=Baril
+tile.pirates.ghastly_planks.name=Planches épouvantables
+tile.pirates.ghastly_rail.name=Garde-corps épouvantable
+tile.pirates.ghastly_stairs.name=Escaliers épouvantables
+tile.pirates.ghastly_log.name=Bûche épouvantable
+tile.pirates.ghastly_bell.name=Cloche épouvantable
+tile.pirates.pirate_chest.name=Coffre épouvantable
+tile.pirates.forge.name=Forge
+tile.pirates.cannonball.name=Boulet de canon
+
+inventory.chest.pirate=Coffre maudit
+
+pirates.worldgen=Génération du monde
+pirates.worldgen.chance=1 chance sur _ pour les navires de frayer dans un océan
