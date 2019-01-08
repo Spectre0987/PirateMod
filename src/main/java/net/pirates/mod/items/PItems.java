@@ -3,7 +3,6 @@ package net.pirates.mod.items;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemSword;
@@ -29,12 +28,9 @@ public class PItems {
 	public static Item ram_rod = register(new ItemDamageable(250), "ram_rod");
 	public static Item hurdy_gurdy = register(new ItemHurdyGurdy(), "hurdy_gurdy");
 	public static Item rope = register(new ItemRope(), "rope");
+	public static Item grapple_hook = register(new ItemGrapple(), "grapple_hook");
 	
 	public static void register() {
-		
-		pirateHat = register(new ItemPirateArmor(0, EntityEquipmentSlot.HEAD), "pirate_hat");
-		
-		pirateBoots = register(new ItemPirateArmor(3, EntityEquipmentSlot.FEET), "pirate_boots");
 		
 		cutlass = register(new ItemSword(ToolMaterial.DIAMOND).setCreativeTab(Pirate.tab), "cutlass");
 		

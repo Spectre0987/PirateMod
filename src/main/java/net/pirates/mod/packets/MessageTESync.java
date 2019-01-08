@@ -31,13 +31,14 @@ public class MessageTESync implements IMessage{
 	@Override
 	public void fromBytes(ByteBuf buf) {
 		pos = BlockPos.fromLong(buf.readLong());
-		player = UUID.fromString(ByteBufUtils.readUTF8String(buf));
+		if(!buf.readBoolean())player = UUID.fromString(ByteBufUtils.readUTF8String(buf));
 	}
 
 	@Override
 	public void toBytes(ByteBuf buf) {
 		buf.writeLong(pos.toLong());
-		ByteBufUtils.writeUTF8String(buf, player.toString());
+		buf.writeBoolean(player == null);
+		if(player != null)ByteBufUtils.writeUTF8String(buf, player.toString());
 	}
 
 	public static class Handler implements IMessageHandler<MessageTESync, IMessage>{

@@ -40,12 +40,13 @@ public class ItemRope extends Item {
 
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		ItemStack held = player.getHeldItem(hand);
 		if(worldIn.getBlockState(pos).getBlock() != PBlocks.cleat) {
-			setRopePos(player.getHeldItem(hand), new Vec3d(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5));
+			setRopePos(player.getHeldItem(hand), new Vec3d(pos.getX() + hitX, pos.getY() + hitY, pos.getZ() + hitZ));
 		}
 		else {
 			TileEntityCleat cleat = (TileEntityCleat)worldIn.getTileEntity(pos);
-			if(cleat != null) {
+			if(cleat != null && held.hasTagCompound() && held.getTagCompound().hasKey("x")) {
 				cleat.addConnection(getPos(player.getHeldItem(hand)));
 				player.getHeldItem(hand).setTagCompound(null);
 			}
