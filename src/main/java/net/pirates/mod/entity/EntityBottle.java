@@ -17,9 +17,9 @@ public class EntityBottle extends Entity{
 	@Override
 	public void onEntityUpdate() {
 		super.onEntityUpdate();
-		this.handleMove();
-		this.motionX += this.speedX;
-		this.motionZ += this.speedZ;
+		//this.handleMove();
+		//this.motionX += this.speedX;
+		//this.motionZ += this.speedZ;
 	}
 
 	@Override
