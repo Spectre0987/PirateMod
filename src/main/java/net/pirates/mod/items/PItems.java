@@ -29,6 +29,7 @@ public class PItems {
 	public static Item hurdy_gurdy = register(new ItemHurdyGurdy(), "hurdy_gurdy");
 	public static Item rope = register(new ItemRope(), "rope");
 	public static Item grapple_hook = register(new ItemGrapple(), "grapple_hook");
+	public static Item sash = register(new ItemSash(), "sash");
 	
 	public static void register() {
 		

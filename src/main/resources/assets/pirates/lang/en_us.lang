@@ -13,6 +13,9 @@ item.pirates.sextant.name=Sextant
 item.pirates.ram_rod.name=Ram Rod
 item.pirates.lantern.name=Lantern
 item.pirates.hurdy_gurdy.name=Hurdy Gurdy
+item.pirates.grapple_hook.name=Grapple Hook
+item.pirates.rope.name=Rope
+item.pirates.sash.name=Sash
 
 tile.pirates.cannon.name=Cannon
 tile.pirates.cell.name=Cell
