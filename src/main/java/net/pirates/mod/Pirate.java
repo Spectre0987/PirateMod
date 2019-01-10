@@ -26,6 +26,8 @@ import net.pirates.mod.entity.EntityBottle;
 import net.pirates.mod.entity.EntityBullet;
 import net.pirates.mod.entity.EntityCannonball;
 import net.pirates.mod.entity.EntityGrappleHook;
+import net.pirates.mod.entity.EntityKraken;
+import net.pirates.mod.entity.EntityMermaid;
 import net.pirates.mod.entity.EntityPirate;
 import net.pirates.mod.entity.EntityPirateHuman;
 import net.pirates.mod.entity.EntityShark;
@@ -80,6 +82,8 @@ public class Pirate
     	EntityHelper.registerProjectiles(EntityGrappleHook.class, "grapple_hook");
     	EntityHelper.registerWaterMobs(EntityShark.class, "shark");
     	EntityHelper.registerMobs(EntityPirateHuman.class, "pirate_human");
+    	EntityHelper.registerWaterMobs(EntityKraken.class, "kraken");
+    	EntityHelper.registerWaterMobs(EntityMermaid.class, "mermaid");
     	
     	registerTileEntity(TileEntityCell.class, "cell");
     	registerTileEntity(TileEntityBoatSling.class, "boat_sling");

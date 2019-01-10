@@ -7,10 +7,14 @@ import net.pirates.mod.client.renderers.RenderCannonball;
 import net.pirates.mod.client.renderers.RenderCell;
 import net.pirates.mod.client.renderers.RenderCleat;
 import net.pirates.mod.client.renderers.RenderHumanPirate;
+import net.pirates.mod.client.renderers.RenderKraken;
+import net.pirates.mod.client.renderers.RenderMermaid;
 import net.pirates.mod.client.renderers.RenderShark;
 import net.pirates.mod.client.renderers.RendererInvis;
 import net.pirates.mod.entity.EntityBullet;
 import net.pirates.mod.entity.EntityCannonball;
+import net.pirates.mod.entity.EntityKraken;
+import net.pirates.mod.entity.EntityMermaid;
 import net.pirates.mod.entity.EntityPirate;
 import net.pirates.mod.entity.EntityPirateHuman;
 import net.pirates.mod.entity.EntityShark;
@@ -35,6 +39,8 @@ public class ClientProxy extends ServerProxy{
 		RenderingRegistry.registerEntityRenderingHandler(EntityCannonball.class, RenderCannonball::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityShark.class, RenderShark::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityPirateHuman.class, RenderHumanPirate::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityKraken.class, RenderKraken::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityMermaid.class, RenderMermaid::new);
 	}
 
 }
