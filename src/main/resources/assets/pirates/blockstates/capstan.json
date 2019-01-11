@@ -1,0 +1,10 @@
+{
+    "variants":{
+        "normal":{
+            "model":"pirates:capstan"
+        },
+        "inventory":{
+            "model":"pirates:capstan"
+        }
+    }
+}

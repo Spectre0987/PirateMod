@@ -39,6 +39,7 @@ public class PBlocks {
 	public static Block square_sail = register(new BlockSquareSail(), "square_sail");
 	public static Block jib_sheet = register(new BlockJibsheet(), "jib_sheet");
 	public static Block cleat = register(new BlockCleat(), "cleat");
+	public static Block capstan = register(new BlockCapstan(), "capstan");
 	
 	public static Block light_te = register(new BlockLight(), "light_te");	
 	

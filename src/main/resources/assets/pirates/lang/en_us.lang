@@ -34,6 +34,7 @@ tile.pirates.forge.name=Forge
 tile.pirates.cannonball.name=Cannonball
 tile.pirates.square_sail.name=Square Sail
 tile.pirates.jib_sheet.name=Jib Sheet
+tile.pirates.capstan.name=Capstan
 
 inventory.chest.pirate=Cursed Chest
 
