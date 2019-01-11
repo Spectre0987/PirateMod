@@ -14,6 +14,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.pirates.mod.Pirate;
+import net.pirates.mod.entity.EntityKraken;
 import net.pirates.mod.misc.SoundRegistry;
 
 public class BlockBell extends BlockHorizontal {
@@ -40,6 +41,10 @@ public class BlockBell extends BlockHorizontal {
 		if(!worldIn.isRemote) {
 			for(EntityPlayerMP player : worldIn.getEntitiesWithinAABB(EntityPlayerMP.class, Block.FULL_BLOCK_AABB.offset(pos).grow(40))) {
 				worldIn.playSound(null, player.getPosition(), SoundRegistry.ship_bell, SoundCategory.BLOCKS, 1F, 1F);
+			}
+			
+			for(EntityKraken kraken : worldIn.getEntitiesWithinAABB(EntityKraken.class, Block.FULL_BLOCK_AABB.offset(pos).grow(64))) {
+				kraken.getMoveHelper().setMoveTo(pos.getX() + 0.5, pos.getY(), pos.getZ(), 0.7);
 			}
 		}
 		return true;

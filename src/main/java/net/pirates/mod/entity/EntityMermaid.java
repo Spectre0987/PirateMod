@@ -3,18 +3,22 @@ package net.pirates.mod.entity;
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.passive.EntityWaterMob;
+import net.minecraft.entity.ai.EntityMoveHelper.Action;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNavigateSwimmer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.pirates.mod.entity.water.ai.EntityMoveHandlerWater;
 
-public class EntityMermaid extends EntityWaterMob{
+public class EntityMermaid extends EntityCreature{
 
 	public EntityMermaid(World worldIn) {
 		super(worldIn);
@@ -22,9 +26,16 @@ public class EntityMermaid extends EntityWaterMob{
 		this.tasks.addTask(0, new EntityAISavePlayer(this, 20));
 		this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 32F));
 		this.tasks.addTask(1, new EntityAIWanderSwim(this, 0.3));
+		//this.tasks.addTask(2, new EntityAIWander(this, 0.3));
 		this.stepHeight = 0.95F;
+		this.moveHelper = new EntityMoveHandlerWater(this);
 	}
 	
+	@Override
+	public boolean canBreatheUnderwater() {
+		return true;
+	}
+
 	public static class EntityAISavePlayer extends EntityAIBase{
 
 		EntityMermaid mer;
@@ -39,7 +50,7 @@ public class EntityMermaid extends EntityWaterMob{
 		
 		@Override
 		public boolean shouldExecute() {
-			return mer != null && mer.world.getClosestPlayerToEntity(mer, range) != null;
+			return mer != null && mer.world.getClosestPlayerToEntity(mer, range) != null && mer.world.getClosestPlayerToEntity(mer, range).getAir() < 1;
 		}
 
 		@Override
@@ -74,13 +85,13 @@ public class EntityMermaid extends EntityWaterMob{
 	
 	public static class EntityAIWanderSwim extends EntityAIBase{
 		
-		public EntityWaterMob mob;
+		public EntityLiving mob;
 		public double speed;
 		public long time = -1;
 		Random rand = new Random();
 		
 		
-		public EntityAIWanderSwim(EntityWaterMob mob, double speed) {
+		public EntityAIWanderSwim(EntityLiving mob, double speed) {
 			this.mob = mob;
 			this.speed = speed;
 			this.setMutexBits(1);
@@ -88,15 +99,21 @@ public class EntityMermaid extends EntityWaterMob{
 
 		@Override
 		public boolean shouldExecute() {
-			return true;
+			return this.mob.getMoveHelper().action == Action.WAIT;
 		}
 
 		@Override
 		public void updateTask() {
 			if(time == -1 || mob.world.getWorldTime() > time) {
-				time = mob.world.getWorldTime() + rand.nextInt(90);
+				time = mob.world.getWorldTime() + rand.nextInt(300);
+				for(int tries = 0; tries < 50; ++tries) {
+					BlockPos pos = this.mob.getPosition().add(new BlockPos(rand.nextInt(40) - 20, rand.nextInt(40) - 20, rand.nextInt(40) - 20));
+					if(mob.world.getBlockState(pos).getMaterial() == Material.WATER) {
+						mob.getMoveHelper().setMoveTo(pos.getX(), pos.getY(), pos.getZ(), 0.75);
+						break;
+					}
+				}
 			}
-			mob.moveForward += 0.2;
 		}
 	}
 
