@@ -22,6 +22,7 @@ import net.pirates.mod.blocks.PBlocks;
 import net.pirates.mod.capability.CapabilityDrunk;
 import net.pirates.mod.capability.DrunkStorage;
 import net.pirates.mod.capability.IDrunk;
+import net.pirates.mod.client.ModelRegistry;
 import net.pirates.mod.entity.EntityBottle;
 import net.pirates.mod.entity.EntityBullet;
 import net.pirates.mod.entity.EntityCannonball;
@@ -110,12 +111,14 @@ public class Pirate
     	LootTableList.register(new ResourceLocation(MODID, "ghost_captain"));
     	//LootTableList.register(new ResourceLocation(MODID, "ghost_chest"));
     	
-    	//ModelRegistry.registerModel("lantern");
+    	ModelRegistry.registerModel("dingy_mast");
     	
-    	try {}
+    	/*try {
+    		EntityBoat.class.get
+    	}
     	catch(Exception e) {
     		e.printStackTrace();
-    	}
+    	}*/
     }
 
 	@EventHandler
