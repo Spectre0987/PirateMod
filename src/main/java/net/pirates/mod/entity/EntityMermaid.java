@@ -26,7 +26,6 @@ public class EntityMermaid extends EntityCreature{
 		this.tasks.addTask(0, new EntityAISavePlayer(this, 20));
 		this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 32F));
 		this.tasks.addTask(1, new EntityAIWanderSwim(this, 0.3));
-		//this.tasks.addTask(2, new EntityAIWander(this, 0.3));
 		this.stepHeight = 0.95F;
 		this.moveHelper = new EntityMoveHandlerWater(this);
 	}

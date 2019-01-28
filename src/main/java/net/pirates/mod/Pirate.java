@@ -25,6 +25,7 @@ import net.pirates.mod.capability.IDrunk;
 import net.pirates.mod.entity.EntityBottle;
 import net.pirates.mod.entity.EntityBullet;
 import net.pirates.mod.entity.EntityCannonball;
+import net.pirates.mod.entity.EntityDingy;
 import net.pirates.mod.entity.EntityGrappleHook;
 import net.pirates.mod.entity.EntityKraken;
 import net.pirates.mod.entity.EntityMermaid;
@@ -84,6 +85,7 @@ public class Pirate
     	EntityHelper.registerMobs(EntityPirateHuman.class, "pirate_human");
     	EntityHelper.registerWaterMobs(EntityKraken.class, "kraken");
     	EntityHelper.registerWaterMobs(EntityMermaid.class, "mermaid");
+    	EntityHelper.registerWaterMobs(EntityDingy.class, "dingy");
     	
     	registerTileEntity(TileEntityCell.class, "cell");
     	registerTileEntity(TileEntityBoatSling.class, "boat_sling");
@@ -107,6 +109,13 @@ public class Pirate
     	
     	LootTableList.register(new ResourceLocation(MODID, "ghost_captain"));
     	//LootTableList.register(new ResourceLocation(MODID, "ghost_chest"));
+    	
+    	//ModelRegistry.registerModel("lantern");
+    	
+    	try {}
+    	catch(Exception e) {
+    		e.printStackTrace();
+    	}
     }
 
 	@EventHandler

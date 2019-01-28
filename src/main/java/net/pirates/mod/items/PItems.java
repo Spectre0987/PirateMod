@@ -8,6 +8,7 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemSword;
 import net.minecraft.util.ResourceLocation;
 import net.pirates.mod.Pirate;
+import net.pirates.mod.entity.EntityDingy;
 
 public class PItems {
 	
@@ -30,6 +31,7 @@ public class PItems {
 	public static Item rope = register(new ItemRope(), "rope");
 	public static Item grapple_hook = register(new ItemGrapple(), "grapple_hook");
 	public static Item sash = register(new ItemSash(), "sash");
+	public static Item dingy = register(new ItemESpawner(EntityDingy::new), "dingy");
 	
 	public static void register() {
 		
