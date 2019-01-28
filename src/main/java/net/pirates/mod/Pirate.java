@@ -3,6 +3,7 @@ package net.pirates.mod;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -112,13 +113,14 @@ public class Pirate
     	//LootTableList.register(new ResourceLocation(MODID, "ghost_chest"));
     	
     	ModelRegistry.registerModel("dingy_mast");
+    	ModelRegistry.registerModel("dingy_sail");
     	
-    	/*try {
-    		EntityBoat.class.get
+    	try {
+    		//EntityBoat.class.get
     	}
     	catch(Exception e) {
     		e.printStackTrace();
-    	}*/
+    	}
     }
 
 	@EventHandler

@@ -34,6 +34,10 @@ public class RenderDingy extends Render<EntityDingy>{
 		GlStateManager.rotate(pYaw - (pYaw - yaw) * partialTicks, 0, 1, 0);
 		Minecraft.getMinecraft().getRenderItem().renderItem(boat_stack, TransformType.NONE);
 		ModelRegistry.renderItem("dingy_mast", TransformType.NONE);
+		GlStateManager.pushMatrix();
+			GlStateManager.scale(1, 1.5, 1);
+			ModelRegistry.renderItem("dingy_sail", TransformType.NONE);
+		GlStateManager.popMatrix();
 		GlStateManager.translate(0, 2, 0);
 		ModelRegistry.renderItem("dingy_mast", TransformType.NONE);
 		GlStateManager.popMatrix();
