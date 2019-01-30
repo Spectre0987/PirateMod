@@ -3,7 +3,6 @@ package net.pirates.mod;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;

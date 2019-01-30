@@ -24,12 +24,14 @@ public class ItemESpawner extends Item {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		RayTraceResult res = worldIn.rayTraceBlocks(playerIn.getPositionVector().add(0, playerIn.getEyeHeight(), 0), playerIn.getPositionVector().add(playerIn.getLookVec().scale(6D)), true);
-		if(res != null && res.typeOfHit == RayTraceResult.Type.BLOCK) {
-			if(worldIn.getBlockState(res.getBlockPos()).getMaterial() == Material.WATER) {
-				Entity e = entity.spawn(worldIn);
-				e.setPosition(res.getBlockPos().getX() + 0.5, res.getBlockPos().getY() + 1, res.getBlockPos().getZ() + 0.5);
-				worldIn.spawnEntity(e);
+		if(!worldIn.isRemote) {
+			RayTraceResult res = worldIn.rayTraceBlocks(playerIn.getPositionVector().add(0, playerIn.getEyeHeight(), 0), playerIn.getPositionVector().add(playerIn.getLookVec().scale(6D)), true);
+			if(res != null && res.typeOfHit == RayTraceResult.Type.BLOCK) {
+				if(worldIn.getBlockState(res.getBlockPos()).getMaterial() == Material.WATER) {
+					Entity e = entity.spawn(worldIn);
+					e.setPosition(res.getBlockPos().getX() + 0.5, res.getBlockPos().getY() + 1, res.getBlockPos().getZ() + 0.5);
+					worldIn.spawnEntity(e);
+				}
 			}
 		}
 		return super.onItemRightClick(worldIn, playerIn, handIn);
