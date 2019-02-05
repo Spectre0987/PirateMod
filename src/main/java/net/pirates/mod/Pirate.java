@@ -3,7 +3,6 @@ package net.pirates.mod;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -33,6 +32,7 @@ import net.pirates.mod.entity.EntityKraken;
 import net.pirates.mod.entity.EntityMermaid;
 import net.pirates.mod.entity.EntityPirate;
 import net.pirates.mod.entity.EntityPirateHuman;
+import net.pirates.mod.entity.EntityPulledBlock;
 import net.pirates.mod.entity.EntityShark;
 import net.pirates.mod.handlers.EntityHelper;
 import net.pirates.mod.items.PItems;
@@ -47,6 +47,7 @@ import net.pirates.mod.tileentity.TileEntityCleat;
 import net.pirates.mod.tileentity.TileEntityForge;
 import net.pirates.mod.tileentity.TileEntityLight;
 import net.pirates.mod.tileentity.TileEntityPirateChest;
+import net.pirates.mod.tileentity.TileEntityPully;
 import net.pirates.mod.worldgen.WorldGenShips;
 
 @Mod(modid = Pirate.MODID, name = Pirate.NAME, version = Pirate.VERSION)
@@ -88,6 +89,7 @@ public class Pirate
     	EntityHelper.registerWaterMobs(EntityKraken.class, "kraken");
     	EntityHelper.registerWaterMobs(EntityMermaid.class, "mermaid");
     	EntityHelper.registerWaterMobs(EntityDingy.class, "dingy");
+    	EntityHelper.registerProjectiles(EntityPulledBlock.class, "pulled_block");
     	
     	registerTileEntity(TileEntityCell.class, "cell");
     	registerTileEntity(TileEntityBoatSling.class, "boat_sling");
@@ -97,6 +99,7 @@ public class Pirate
     	registerTileEntity(TileEntityCannon.class, "cannon");
     	registerTileEntity(TileEntityLight.class, "light_te");
     	registerTileEntity(TileEntityCleat.class, "cleat");
+    	registerTileEntity(TileEntityPully.class, "pully");
     	
     	proxy.preInit();
     	
