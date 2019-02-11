@@ -32,6 +32,7 @@ public class PItems {
 	public static Item grapple_hook = register(new ItemGrapple(), "grapple_hook");
 	public static Item sash = register(new ItemSash(), "sash");
 	public static Item dingy = register(new ItemESpawner(EntityDingy::new), "dingy");
+	public static Item dagger = register(new ItemSword(ToolMaterial.IRON), "dagger");
 	
 	public static void register() {
 		

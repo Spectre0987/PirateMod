@@ -33,10 +33,8 @@ public class RenderDingy extends Render<EntityDingy>{
 		float pYaw = -entity.prevRotationYaw - 180;
 		GlStateManager.rotate(pYaw - (pYaw - yaw) * partialTicks, 0, 1, 0);
 		GlStateManager.rotate((float)Math.cos(0.1 * entity.ticksExisted), 0, 0, 1);
+		GlStateManager.scale(10 / 3, 10 / 3, 10 / 3);
 		Minecraft.getMinecraft().getRenderItem().renderItem(boat_stack, TransformType.NONE);
-		ModelRegistry.renderItem("dingy_mast", TransformType.NONE); 
-		GlStateManager.translate(0, 2, 0);
-		ModelRegistry.renderItem("dingy_mast", TransformType.NONE);
 		GlStateManager.popMatrix();
 	}
 
