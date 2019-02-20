@@ -87,9 +87,6 @@ public class Pirate
     	
     	LootTableList.register(new ResourceLocation(MODID, "ghost_captain"));
     	
-    	ModelRegistry.registerModel("dingy_mast");
-    	ModelRegistry.registerModel("dingy_sail");
-    	
 
     }
 	

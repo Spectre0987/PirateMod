@@ -19,7 +19,7 @@ public class TileEntityBarrel extends TileEntity implements ITickable{
 	public TileEntityBarrel() {}
 	
 	@Override
-	public void update() {
+	public void tick() {
 		if(this.waterCount > 0 && sugarCount > 5) {
 			++ticks;
 			if(ticks > 200) {
@@ -29,11 +29,11 @@ public class TileEntityBarrel extends TileEntity implements ITickable{
 				this.ticks = 0;
 				this.markDirty();
 			}
-			if(world.isRemote && world.getWorldTime() % 20 == 0) {
-				world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.getPos().getX() + 0.5, this.getPos().getY() + 1.1, this.getPos().getZ() + 0.5, 0, 1, 0, 0);
+			if(world.isRemote && world.getDayTime() % 20 == 0) {
+				//world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.getPos().getX() + 0.5, this.getPos().getY() + 1.1, this.getPos().getZ() + 0.5, 0, 1, 0, 0);
 			}
 		}
-		if(!world.isRemote && world.getWorldTime() % 20 == 0) {
+		if(!world.isRemote && world.getDayTime() % 20 == 0) {
 			for(EntityPlayerMP player : world.getEntitiesWithinAABB(EntityPlayerMP.class, Block.FULL_BLOCK_AABB.offset(this.getPos()).grow(20))) {
 				player.connection.sendPacket(this.getUpdatePacket());
 			}
