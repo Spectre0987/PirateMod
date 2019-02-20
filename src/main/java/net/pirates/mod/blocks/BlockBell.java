@@ -15,7 +15,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.pirates.mod.blocks.prop.PirateBlockProperties;
-import net.pirates.mod.entity.EntityKraken;
 import net.pirates.mod.misc.SoundRegistry;
 
 public class BlockBell extends BlockWaterloggable {
@@ -48,10 +47,6 @@ public class BlockBell extends BlockWaterloggable {
 		if(!worldIn.isRemote) {
 			for(EntityPlayerMP players : worldIn.getEntitiesWithinAABB(EntityPlayerMP.class, BLOCK.offset(pos).grow(40))) {
 				worldIn.playSound(null, players.getPosition(), SoundRegistry.ship_bell, SoundCategory.BLOCKS, 1F, 1F);
-			}
-			
-			for(EntityKraken kraken : worldIn.getEntitiesWithinAABB(EntityKraken.class, BLOCK.offset(pos).grow(64))) {
-				kraken.getMoveHelper().setMoveTo(pos.getX() + 0.5, pos.getY(), pos.getZ(), 0.7);
 			}
 		}
 		return true;

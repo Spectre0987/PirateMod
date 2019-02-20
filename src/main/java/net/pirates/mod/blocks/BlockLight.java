@@ -5,17 +5,11 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
-import net.pirates.mod.tileentity.TileEntityLight;
 
 public class BlockLight extends BlockAir {
 
 	public BlockLight() {
 		super(Properties.create(Material.AIR).lightValue(15));
-	}
-	
-	@Override
-	public boolean hasTileEntity() {
-		return true;
 	}
 
 	@Override
@@ -25,7 +19,7 @@ public class BlockLight extends BlockAir {
 	
 	@Override
 	public TileEntity createTileEntity(IBlockState state, IBlockReader world) {
-		return new TileEntityLight();
+		return null; //return new TileEntityLight();
 	}
 
 }

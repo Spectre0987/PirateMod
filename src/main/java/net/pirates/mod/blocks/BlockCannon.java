@@ -5,7 +5,6 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.state.DirectionProperty;
@@ -21,8 +20,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.pirates.mod.items.PItems;
-import net.pirates.mod.tileentity.TileEntityCannon;
 
 public class BlockCannon extends BlockContainer {
 	
@@ -40,7 +37,7 @@ public class BlockCannon extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(IBlockReader worldIn) {
-		return new TileEntityCannon();
+		return null; //return new TileEntityCannon();
 	}
 
 
@@ -75,27 +72,7 @@ public class BlockCannon extends BlockContainer {
 
 	@Override
 	public boolean onBlockActivated(IBlockState state, World worldIn, BlockPos pos, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if(!worldIn.isRemote && !player.getHeldItem(hand).isEmpty()) {
-			Item held = player.getHeldItem(hand).getItem();
-			TileEntityCannon cannon = (TileEntityCannon) worldIn.getTileEntity(pos);
-			if(cannon == null) return false;
-			if(held == Items.GUNPOWDER) {
-				cannon.setGunpowder(cannon.getGunpowder() + 1);
-				player.getHeldItem(hand).shrink(1);
-			}
-			else if(held == PBlocks.cannonball.asItem() && cannon.isRammed() && !cannon.hasBall()) {
-				cannon.setHasBall(true);
-				player.getHeldItem(hand).shrink(1);
-			}
-			else if(held == PItems.ram_rod && cannon.getGunpowder() > 0) {
-				player.getHeldItem(hand).damageItem(1, player);
-				cannon.setRammed(true);
-			}
-			else if(held == Items.FLINT_AND_STEEL && cannon.hasBall() && cannon.isRammed() && cannon.getGunpowder() > 0) {
-				player.getHeldItem(hand).damageItem(1, player);
-				cannon.fire();
-			}
-		}
+		
 		return true;
 	}
 

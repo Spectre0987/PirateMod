@@ -4,6 +4,7 @@ import net.minecraft.client.renderer.entity.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -14,8 +15,10 @@ import net.pirates.mod.client.models.ModelSash;
 
 public class ItemSash extends ItemArmor {
 
-	public static final IArmorMaterial PIRATE_MATERIAL = new MaterialArmorIron();
+	public static final IArmorMaterial PIRATE_MATERIAL = ArmorMaterial.CHAIN;
+	
 	public ItemSash() {
+		super(PIRATE_MATERIAL, EntityEquipmentSlot.CHEST, new Properties().group(Pirate.tab).maxStackSize(1));
 	}
 
 	@Override

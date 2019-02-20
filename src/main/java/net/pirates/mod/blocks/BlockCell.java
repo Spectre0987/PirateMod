@@ -13,7 +13,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.pirates.mod.tileentity.TileEntityCell;
 
 public class BlockCell extends BlockContainer {
 
@@ -25,7 +24,7 @@ public class BlockCell extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(IBlockReader worldIn) {
-		return new TileEntityCell();
+		return null; //return new TileEntityCell();
 	}
 
 	@Override
@@ -36,11 +35,7 @@ public class BlockCell extends BlockContainer {
 	@Override
 	public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
 		super.onEntityWalk(worldIn, pos, entityIn);
-		TileEntityCell cell = (TileEntityCell) worldIn.getTileEntity(pos);
-		if(cell != null && cell.getEntityTag().isEmpty() && !(entityIn instanceof EntityPlayer)) {
-			cell.setEntity(entityIn);
-			entityIn.remove();
-		}
+		
 	}
 
 	@Override
@@ -50,25 +45,14 @@ public class BlockCell extends BlockContainer {
 
 	@Override
 	public boolean onBlockActivated(IBlockState state, World worldIn, BlockPos pos, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-		TileEntityCell cell = (TileEntityCell)worldIn.getTileEntity(pos);
-		if(!worldIn.isRemote && cell != null && player.isSneaking()) {
-			BlockPos off = pos.offset(side);
-			Entity e = cell.getEntity();
-			e.setPosition(off.getX() + 0.5, off.getY() + 1, off.getZ() + 0.5);
-			worldIn.spawnEntity(e);
-			cell.setEntity(null);
-		}
+		
 		return true;
 	}
 
 	@Override
 	public void onEntityCollision(IBlockState state, World worldIn, BlockPos pos, Entity entityIn) {
 		super.onEntityCollision(state, worldIn, pos, entityIn);
-		TileEntityCell cell = (TileEntityCell) worldIn.getTileEntity(pos);
-		if(cell != null && cell.getEntityTag().isEmpty() && !(entityIn instanceof EntityPlayer)) {
-			cell.setEntity(entityIn);
-			entityIn.remove();
-		}
+		
 	}
 
 	@Override
@@ -78,12 +62,7 @@ public class BlockCell extends BlockContainer {
 
 	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
-		TileEntityCell cell = (TileEntityCell)worldIn.getTileEntity(pos);
-		if(!worldIn.isRemote && cell != null && cell.getEntity() != null) {
-			Entity e = cell.getEntity();	
-			e.setPosition(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
-			worldIn.spawnEntity(e);
-		}
+	
 		super.onBlockHarvested(worldIn, pos, state, player);
 	}
 }

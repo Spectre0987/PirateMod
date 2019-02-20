@@ -7,13 +7,11 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.pirates.mod.Pirate;
 
 public class ItemSextant extends Item {
 	
 	public ItemSextant() {
-		this.setCreativeTab(Pirate.tab);
-		this.setMaxStackSize(1);
+		super(PirateItemProperties.BASE_ONE);
 	}
 
 	@Override
