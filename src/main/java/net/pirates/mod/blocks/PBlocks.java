@@ -4,19 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
+import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.pirates.mod.Pirate;
 import net.pirates.mod.items.PItems;
 
-@EventBusSubscriber(modid = Pirate.MODID)
+@EventBusSubscriber(modid = Pirate.MODID, bus = Bus.MOD)
 public class PBlocks {
 	
 	public static List<Block> BLOCKS = new ArrayList<Block>();
@@ -45,14 +43,12 @@ public class PBlocks {
 	
 	public static Block light_te = register(new BlockLight(), "light_te");	
 	
-	public static void register() {}
 	
 	public static Block register(Block item, String name) {
-		ResourceLocation loc = new ResourceLocation(Pirate.MODID, name);
-		item.setTranslationKey(Pirate.MODID + "." + name);
+		ResourceLocation loc = new ResourceLocation(name);
 		item.setRegistryName(loc);
 		BLOCKS.add(item);
-		if(!(item instanceof INeedItem))PItems.items.add(new ItemBlock(item).setRegistryName(loc));
+		if(!(item instanceof INeedItem))PItems.items.add(new ItemBlock(item, new Properties().group(Pirate.tab)).setRegistryName(loc));
 		else PItems.items.add(((INeedItem)item).getItem().setRegistryName(loc));
 		return item;
 	}
@@ -62,13 +58,6 @@ public class PBlocks {
 	public static void registerBlocks(RegistryEvent.Register<Block> event){
 		for(Block block : BLOCKS) {
 			event.getRegistry().register(block);
-		}
-	}
-	
-	@SubscribeEvent
-	public static void registerModels(ModelRegistryEvent event) {
-		for(Block block : BLOCKS) {
-			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "normal"));
 		}
 	}
 

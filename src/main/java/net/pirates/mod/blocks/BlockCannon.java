@@ -1,120 +1,36 @@
 package net.pirates.mod.blocks;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
-import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.StateContainer.Builder;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.pirates.mod.Pirate;
 import net.pirates.mod.items.PItems;
 import net.pirates.mod.tileentity.TileEntityCannon;
 
 public class BlockCannon extends BlockContainer {
 	
 	public static final AxisAlignedBB BB = new AxisAlignedBB(0, 0, 0, 1, 0.6, 1);
-	public static final PropertyDirection FACING = BlockHorizontal.FACING;
+	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 	
 	public BlockCannon() {
-		super(Material.IRON);
-		this.setCreativeTab(Pirate.tab);
-		this.setHarvestLevel("axe", 0);
-		this.setHardness(1F);
-		this.setResistance(1F);
-	}
-
-	@Override
-	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(FACING, EnumFacing.byHorizontalIndex(meta));
-	}
-
-	@Override
-	public int getMetaFromState(IBlockState state) {
-		return state.getValue(FACING).getHorizontalIndex();
-	}
-
-	@Override
-	public boolean isNormalCube(IBlockState state) {
-		return false;
-	}
-
-	@Override
-	public boolean isOpaqueCube(IBlockState state) {
-		return false;
-	}
-
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if(!worldIn.isRemote && !playerIn.getHeldItem(hand).isEmpty()) {
-			Item held = playerIn.getHeldItem(hand).getItem();
-			TileEntityCannon cannon = (TileEntityCannon) worldIn.getTileEntity(pos);
-			if(cannon == null) return false;
-			if(held == Items.GUNPOWDER) {
-				cannon.setGunpowder(cannon.getGunpowder() + 1);
-				playerIn.getHeldItem(hand).shrink(1);
-			}
-			else if(held == Item.getItemFromBlock(PBlocks.cannonball) && cannon.isRammed() && !cannon.hasBall()) {
-				cannon.setHasBall(true);
-				playerIn.getHeldItem(hand).shrink(1);
-			}
-			else if(held == PItems.ram_rod && cannon.getGunpowder() > 0) {
-				playerIn.getHeldItem(hand).damageItem(1, playerIn);
-				cannon.setRammed(true);
-			}
-			else if(held == Items.FLINT_AND_STEEL && cannon.hasBall() && cannon.isRammed() && cannon.getGunpowder() > 0) {
-				playerIn.getHeldItem(hand).damageItem(1, playerIn);
-				cannon.fire();
-			}
-		}
-		return true;
-	}
-
-	@Override
-	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, FACING);
-	}
-
-	@Override
-	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
-		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing());
-	}
-
-	@Override
-	public boolean canBeConnectedTo(IBlockAccess world, BlockPos pos, EnumFacing facing) {
-		return false;
-	}
-
-	@Override
-	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-		List<ItemStack> list = new ArrayList<ItemStack>();
-		list.add(new ItemStack(this));
-		return list;
-	}
-
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-		return BB;
-	}
-
-	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
-		return BB;
+		super(Properties.create(Material.IRON).hardnessAndResistance(5F));
 	}
 
 	@Override
@@ -123,8 +39,64 @@ public class BlockCannon extends BlockContainer {
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
+	public TileEntity createNewTileEntity(IBlockReader worldIn) {
 		return new TileEntityCannon();
+	}
+
+
+	@Override
+	public BlockRenderLayer getRenderLayer() {
+		return BlockRenderLayer.CUTOUT;
+	}
+
+
+	@Override
+	protected void fillStateContainer(Builder<Block, IBlockState> builder) {
+		super.fillStateContainer(builder);
+		builder.add(FACING);
+	}
+
+
+	@Override
+	public IItemProvider getItemDropped(IBlockState state, World worldIn, BlockPos pos, int fortune) {
+		return new IItemProvider() {
+			@Override
+			public Item asItem() {
+				return PBlocks.cannon.asItem();
+			}};
+	}
+
+
+	@Override
+	public IBlockState getStateForPlacement(BlockItemUseContext context) {
+		return this.getDefaultState().with(FACING, context.getPlayer().getHorizontalFacing());
+	}
+
+
+	@Override
+	public boolean onBlockActivated(IBlockState state, World worldIn, BlockPos pos, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+		if(!worldIn.isRemote && !player.getHeldItem(hand).isEmpty()) {
+			Item held = player.getHeldItem(hand).getItem();
+			TileEntityCannon cannon = (TileEntityCannon) worldIn.getTileEntity(pos);
+			if(cannon == null) return false;
+			if(held == Items.GUNPOWDER) {
+				cannon.setGunpowder(cannon.getGunpowder() + 1);
+				player.getHeldItem(hand).shrink(1);
+			}
+			else if(held == PBlocks.cannonball.asItem() && cannon.isRammed() && !cannon.hasBall()) {
+				cannon.setHasBall(true);
+				player.getHeldItem(hand).shrink(1);
+			}
+			else if(held == PItems.ram_rod && cannon.getGunpowder() > 0) {
+				player.getHeldItem(hand).damageItem(1, player);
+				cannon.setRammed(true);
+			}
+			else if(held == Items.FLINT_AND_STEEL && cannon.hasBall() && cannon.isRammed() && cannon.getGunpowder() > 0) {
+				player.getHeldItem(hand).damageItem(1, player);
+				cannon.fire();
+			}
+		}
+		return true;
 	}
 
 }

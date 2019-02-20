@@ -1,9 +1,9 @@
 package net.pirates.mod.client.models;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.model.ModelBase;
+import net.minecraft.client.renderer.entity.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 /**
@@ -78,7 +78,7 @@ public class ModelMermaid extends ModelBase {
     	GlStateManager.pushMatrix();
     	if(entity == null)return;
     	if(entity.world.getBlockState(entity.getPosition().up()).getMaterial() == Material.WATER) {
-    		GlStateManager.translate(0, 1, 0);
+    		GlStateManager.translatef(0, 1, 0);
     		this.bipedBody.rotateAngleX = (float) Math.toRadians(90);
     		float angle = (float)Math.toRadians(Math.cos(time * 0.1) * 10);
     		this.tail_top.rotateAngleX = angle;

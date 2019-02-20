@@ -1,8 +1,8 @@
 package net.pirates.mod.client.models;
 
-import net.minecraft.client.model.ModelBiped;
-import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.model.ModelBiped;
+import net.minecraft.client.renderer.entity.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 
@@ -40,7 +40,7 @@ public class ModelSash extends ModelBiped {
     	this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
     	GlStateManager.pushMatrix();
     	if(entity != null && entity.isSneaking()) {
-    		GlStateManager.translate(0, 0.2, 0);
+    		GlStateManager.translatef(0, 0.2F, 0);
     	}
         this.bipedBody.render(f5);
         GlStateManager.popMatrix();
