@@ -14,6 +14,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.pirates.mod.blocks.prop.PirateBlockProperties;
 import net.pirates.mod.entity.EntityKraken;
 import net.pirates.mod.misc.SoundRegistry;
 

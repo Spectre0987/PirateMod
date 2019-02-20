@@ -6,11 +6,12 @@ import java.util.List;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.pirates.mod.Pirate;
 
-@EventBusSubscriber(modid = Pirate.MODID)
+@EventBusSubscriber(modid = Pirate.MODID, bus = Bus.MOD)
 public class SoundRegistry {
 	
 	private static List<SoundEvent> SOUNDS = new ArrayList<SoundEvent>();

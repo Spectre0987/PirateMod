@@ -13,6 +13,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.pirates.mod.blocks.prop.PirateBlockProperties;
 import net.pirates.mod.items.PItems;
 import net.pirates.mod.tileentity.TileEntityBarrel;
 

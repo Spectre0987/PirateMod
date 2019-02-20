@@ -1,19 +1,21 @@
 package net.pirates.mod.items;
 
-import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.renderer.entity.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.pirates.mod.Pirate;
 import net.pirates.mod.client.models.ModelSash;
 
 public class ItemSash extends ItemArmor {
 
+	public static final IArmorMaterial PIRATE_MATERIAL = new MaterialArmorIron();
 	public ItemSash() {
-		super(ArmorMaterial.CHAIN, 1, EntityEquipmentSlot.LEGS);
-		this.setCreativeTab(Pirate.tab);
 	}
 
 	@Override
@@ -21,6 +23,7 @@ public class ItemSash extends ItemArmor {
 		return Pirate.MODID + ":textures/armor/sash.png";
 	}
 
+	@OnlyIn(Dist.CLIENT)
 	@Override
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default) {
 		return new ModelSash();
