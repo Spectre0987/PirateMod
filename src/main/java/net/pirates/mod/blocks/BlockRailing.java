@@ -1,7 +1,6 @@
 package net.pirates.mod.blocks;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.BlockItemUseContext;
@@ -12,7 +11,7 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 
-public class BlockRailing extends BlockHorizontal {
+public class BlockRailing extends BlockWaterloggable {
 
 	public static final BooleanProperty END = BooleanProperty.create("end");
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -36,6 +35,7 @@ public class BlockRailing extends BlockHorizontal {
 	protected void fillStateContainer(Builder<Block, IBlockState> builder) {
 		super.fillStateContainer(builder);
 		builder.add(END);
+		builder.add(FACING);
 	}
 
 	@Override

@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
 	"textures": {
-		"0": "blocks/planks_oak",
+		"0": "block/oak_planks",
 		"1": "blocks/iron_block",
-		"particle": "blocks/planks_oak"
+		"particle": "block/oak_planks"
 	},
 	"elements": [
 		{

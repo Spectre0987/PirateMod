@@ -1,11 +1,11 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "blocks/planks_oak",
+		"0": "block/oak_planks",
 		"1": "blocks/bone_block_top",
 		"2": "blocks/anvil_base",
-		"3": "blocks/log_oak",
-		"particle": "blocks/log_oak"
+		"3": "block/oak_log",
+		"particle": "block/oak_log"
 	},
 	"elements": [
 		{

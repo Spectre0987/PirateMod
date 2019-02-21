@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
 	"textures": {
 		"0": "blocks/anvil_base",
-		"1": "blocks/planks_oak",
+		"1": "block/oak_planks",
 		"2": "blocks/concrete_black",
 		"particle": "blocks/anvil_base"
 	},

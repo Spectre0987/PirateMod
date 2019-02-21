@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "blocks/wool_colored_silver",
-		"1": "blocks/planks_oak",
+		"1": "block/oak_planks",
 		"particle": "blocks/wool_colored_silver"
 	},
 	"elements": [

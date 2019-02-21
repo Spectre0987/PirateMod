@@ -11,9 +11,11 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.registries.ObjectHolder;
 import net.pirates.mod.Pirate;
 import net.pirates.mod.items.PItems;
 
+@ObjectHolder(Pirate.MODID)
 @EventBusSubscriber(modid = Pirate.MODID, bus = Bus.MOD)
 public class PBlocks {
 	
@@ -35,7 +37,7 @@ public class PBlocks {
 	
 	
 	public static Block register(Block item, String name) {
-		ResourceLocation loc = new ResourceLocation(name);
+		ResourceLocation loc = new ResourceLocation(Pirate.MODID, name);
 		item.setRegistryName(loc);
 		BLOCKS.add(item);
 		if(!(item instanceof INeedItem))PItems.items.add(new ItemBlock(item, new Properties().group(Pirate.tab)).setRegistryName(loc));

@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"2": "blocks/wool_colored_black",
-		"3": "blocks/log_oak",
+		"3": "block/oak_log",
 		"particle": "blocks/wool_colored_black"
 	},
 	"elements": [

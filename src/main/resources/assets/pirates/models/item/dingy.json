@@ -1,10 +1,10 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"2": "blocks/planks_oak",
-		"5": "blocks/log_oak",
+		"2": "block/oak_planks",
+		"5": "block/oak_log",
 		"6": "blocks/wool_colored_white",
-		"particle": "blocks/planks_oak"
+		"particle": "block/oak_planks"
 	},
 	"elements": [
 		{

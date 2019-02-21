@@ -1,3 +1,59 @@
+Build: 1.13.2-25.0.45 - Thu Feb 21 12:25:00 GMT 2019
+	lex:
+		Merge extra and data jars. As Log4j has issues with it's config being in
+		a different jar then the custom logger.
+
+=========
+Build: 1.13.2-25.0.44 - Wed Feb 20 02:48:49 GMT 2019
+	tterrag1098:
+		Add GuiUtils.drawInscribedRect, use in mod list GUI to fix logo
+		rendering
+
+=========
+Build: 1.13.2-25.0.43 - Wed Feb 20 00:28:27 GMT 2019
+	tterrag1098:
+		Fix reference to UnsafeHacks in RuntimeEnumExtender
+
+=========
+Build: 1.13.2-25.0.42 - Tue Feb 19 18:24:34 GMT 2019
+	tterrag1098:
+		Fix double tall plants not being shearable, add IShearable to seagrass
+		Closes #5524
+
+=========
+Build:  - Tue Feb 19 17:46:50 GMT 2019
+	bonzoweb:
+		Add back missing ItemColors patch (#5474)
+
+=========
+Build: 1.13.2-25.0.40 - Tue Feb 19 17:35:41 GMT 2019
+	tterrag1098:
+		Fix MinecraftForge.initialize not being called.
+		Fixes UsernameCache and harvest tools Closes #5529
+
+	mariaum:
+		Fix entities being killed in one hit. Closes #5511
+		Fix unloc pattern for tps output
+
+	tterrag1098:
+		Make BannerPattern extensible (#5464)
+
+=========
+Build: 1.13.2-25.0.37 - Tue Feb 19 07:16:37 GMT 2019
+	bs2609:
+		Remove EnumFacing internal ID maps from AT file (#5526)
+
+=========
+Build: 1.13.2-25.0.36 - Tue Feb 19 04:29:29 GMT 2019
+	vrtl:
+		Fix GuiEnchantment using wrong value to index enchantClue array (#5452)
+
+=========
+Build: 1.13.2-25.0.35 - Tue Feb 19 04:21:12 GMT 2019
+	bs2609:
+		Fix some minor patch regressions (#5490)
+
+=========
 Build: 1.13.2-25.0.34 - Mon Feb 18 22:20:23 GMT 2019
 	kat.swales:
 		Altered EntityType registry to use a Forge based registry (#5493)
