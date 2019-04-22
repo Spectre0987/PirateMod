@@ -14,25 +14,23 @@ public class PItems {
 	
 	public static List<Item> items = new ArrayList<Item>();
 	
-	public static Item pirateHat;
 	public static Item pirateBoots;
 	public static Item cutlass;
 	public static Item flintlock;
 	public static Item powder_flask;
 	public static Item rum = register(new ItemRumBottle(), "rum");
 	public static Item telescope = register(new ItemTelescope(), "telescope");
-	//public static Item map = register(new ItemPirateMap(), "map");
-	//public static Item message_bottle = register(new ItemMessageBottle(), "message_bottle");
+	public static Item map = register(new ItemPirateMap(), "map");
 	public static Item compass = register(new ItemPirateCompass(), "compass");
 	public static Item sextant = register(new ItemSextant(), "sextant");
 	public static Item lantern = register(new ItemLantern(), "lantern");
 	public static Item ram_rod = register(new ItemDamageable(250), "ram_rod");
 	public static Item hurdy_gurdy = register(new ItemHurdyGurdy(), "hurdy_gurdy");
 	public static Item rope = register(new ItemRope(), "rope");
-	public static Item grapple_hook = register(new ItemGrapple(), "grapple_hook");
-	public static Item sash = register(new ItemSash(), "sash");
 	public static Item dingy = register(new ItemESpawner(EntityDingy::new), "dingy");
 	public static Item dagger = register(new ItemSword(ToolMaterial.IRON), "dagger");
+	public static Item pirateHat = register(new ItemPirateClothes(), "hat");
+	public static Item bucket = register(new ItemDamageable(150), "bucket");
 	
 	public static void register() {
 		

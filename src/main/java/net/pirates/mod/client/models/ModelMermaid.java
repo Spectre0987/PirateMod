@@ -6,10 +6,6 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 
-/**
- * ModelMermaid - Either Mojang or a mod author
- * Created using Tabula 7.0.0
- */
 public class ModelMermaid extends ModelBase {
 	
     public ModelRenderer bipedBody;
@@ -79,6 +75,7 @@ public class ModelMermaid extends ModelBase {
     	if(entity == null)return;
     	if(entity.world.getBlockState(entity.getPosition().up()).getMaterial() == Material.WATER) {
     		GlStateManager.translate(0, 1, 0);
+    		GlStateManager.rotate(entity.rotationPitch, 1, 0, 0);
     		this.bipedBody.rotateAngleX = (float) Math.toRadians(90);
     		float angle = (float)Math.toRadians(Math.cos(time * 0.1) * 10);
     		this.tail_top.rotateAngleX = angle;
@@ -99,9 +96,9 @@ public class ModelMermaid extends ModelBase {
     		
     		//this.bipedLeftArm.rotateAngleZ = (float)Math.toRadians((Math.cos(time * 0.1) * 2) - 5);
     		//this.bipedRightArm.rotateAngleZ = (float)Math.toRadians((Math.sin(time * 0.1) * 2) + 5);
-    		this.bipedHead.rotateAngleX = (float)Math.toRadians(0);
+    		this.bipedHead.rotateAngleX = 0;
     	}
-    	this.bipedHead.rotateAngleY = (float)Math.toRadians(0);
+    	this.bipedHead.rotateAngleY = 0;
         this.bipedBody.render(f5);
         GlStateManager.popMatrix();
     }

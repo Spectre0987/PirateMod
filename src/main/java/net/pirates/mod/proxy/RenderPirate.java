@@ -1,30 +1,34 @@
 package net.pirates.mod.proxy;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelPlayer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
+import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.util.ResourceLocation;
 import net.pirates.mod.Pirate;
-import net.pirates.mod.entity.EntityPirate;
+import net.pirates.mod.client.models.ModelPirate;
+import net.pirates.mod.entity.EntityGhostPirate;
 
-public class RenderPirate extends RenderLiving<EntityPirate>{
+public class RenderPirate extends RenderLiving<EntityGhostPirate>{
 
-	public static ModelPlayer model = new ModelPlayer(0.0625F, false);
+	public static ModelPirate model = new ModelPirate();
 	public static final ResourceLocation TEXTURE = new ResourceLocation(Pirate.MODID, "textures/entity/pirate.png");
 	
 	public RenderPirate(RenderManager rendermanagerIn) {
 		super(rendermanagerIn, model, 0F);
+		this.addLayer(new LayerHeldItem(this));
+		this.addLayer(new LayerBipedArmor(this));
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(EntityPirate entity) {
+	protected ResourceLocation getEntityTexture(EntityGhostPirate entity) {
 		return TEXTURE;
 	}
 
 	@Override
-	public void doRender(EntityPirate entity, double x, double y, double z, float entityYaw, float partialTicks) {
+	public void doRender(EntityGhostPirate entity, double x, double y, double z, float entityYaw, float partialTicks) {
 		if(entity.world.getWorldTime() > 13000 && entity.world.getMoonPhase() != 4) {
 			GlStateManager.pushMatrix();
 			GlStateManager.enableAlpha();

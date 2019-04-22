@@ -1,5 +1,6 @@
 package net.pirates.mod.client.renderers;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
@@ -20,5 +21,4 @@ public class RenderMermaid extends RenderLiving<EntityMermaid>{
 	protected ResourceLocation getEntityTexture(EntityMermaid entity) {
 		return TEXTURE;
 	}
-
 }

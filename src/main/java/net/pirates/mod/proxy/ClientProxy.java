@@ -11,15 +11,17 @@ import net.pirates.mod.client.renderers.RenderHumanPirate;
 import net.pirates.mod.client.renderers.RenderKraken;
 import net.pirates.mod.client.renderers.RenderMermaid;
 import net.pirates.mod.client.renderers.RenderShark;
+import net.pirates.mod.client.renderers.RenderWater;
 import net.pirates.mod.client.renderers.RendererInvis;
 import net.pirates.mod.entity.EntityBullet;
 import net.pirates.mod.entity.EntityCannonball;
 import net.pirates.mod.entity.EntityDingy;
 import net.pirates.mod.entity.EntityKraken;
 import net.pirates.mod.entity.EntityMermaid;
-import net.pirates.mod.entity.EntityPirate;
+import net.pirates.mod.entity.EntityGhostPirate;
 import net.pirates.mod.entity.EntityPirateHuman;
 import net.pirates.mod.entity.EntityShark;
+import net.pirates.mod.entity.EntityWater;
 import net.pirates.mod.tileentity.TileEntityBoatSling;
 import net.pirates.mod.tileentity.TileEntityCell;
 import net.pirates.mod.tileentity.TileEntityCleat;
@@ -37,13 +39,14 @@ public class ClientProxy extends ServerProxy{
 	@Override
 	public void preInit() {
 		RenderingRegistry.registerEntityRenderingHandler(EntityBullet.class, RendererInvis::new);
-		RenderingRegistry.registerEntityRenderingHandler(EntityPirate.class, RenderPirate::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityGhostPirate.class, RenderPirate::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityCannonball.class, RenderCannonball::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityShark.class, RenderShark::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityPirateHuman.class, RenderHumanPirate::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityKraken.class, RenderKraken::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityMermaid.class, RenderMermaid::new);
 		RenderingRegistry.registerEntityRenderingHandler(EntityDingy.class, RenderDingy::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityWater.class, RenderWater::new);
 	}
 
 }
