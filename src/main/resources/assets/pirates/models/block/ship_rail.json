@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
 	"textures": {
 		"0": "blocks/planks_oak",
-		"1": "blocks/log_oak",
+		"wood": "blocks/log_oak",
 		"particle": "blocks/planks_oak"
 	},
 	"elements": [
