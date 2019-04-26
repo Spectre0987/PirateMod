@@ -2,21 +2,17 @@ package net.pirates.mod.client.renderers;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.GlStateManager.DestFactor;
-import net.minecraft.client.renderer.GlStateManager.SourceFactor;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
 import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.util.ResourceLocation;
-import net.pirates.mod.Pirate;
 import net.pirates.mod.client.models.ModelPirate;
 import net.pirates.mod.entity.EntityGhostPirate;
 
 public class RenderGhostPirate extends RenderLiving<EntityGhostPirate>{
 
 	public static ModelPirate model = new ModelPirate();
-	public static final ResourceLocation TEXTURE = new ResourceLocation(Pirate.MODID, "textures/entity/pirates/pirate_midship_001.png");
 	
 	public RenderGhostPirate(RenderManager rendermanagerIn) {
 		super(rendermanagerIn, model, 0F);
@@ -26,7 +22,8 @@ public class RenderGhostPirate extends RenderLiving<EntityGhostPirate>{
 
 	@Override
 	protected ResourceLocation getEntityTexture(EntityGhostPirate entity) {
-		return TEXTURE;
+		ResourceLocation skin = entity.getRank().getSkin(entity.getSkinIndex());
+		return skin;
 	}
 
 	@Override
