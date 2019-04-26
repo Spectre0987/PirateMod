@@ -89,6 +89,7 @@ public class ItemTelescope extends Item {
 		public static void renderOverlay(RenderGameOverlayEvent.Pre event) {
 			if(Minecraft.getMinecraft().player.getActiveItemStack().getItem() == PItems.telescope) {
 				GlStateManager.enableAlpha();
+				GlStateManager.enableBlend();
 				Minecraft.getMinecraft().getTextureManager().bindTexture(TELESCOPE_TEXTURE);
 				int width = event.getResolution().getScaledWidth() > event.getResolution().getScaledHeight() ? event.getResolution().getScaledWidth() / 2 : event.getResolution().getScaledHeight() / 2;
 				width *= 1.3;
@@ -99,6 +100,7 @@ public class ItemTelescope extends Item {
 				Helper.drawColoredQuad(0, 0, event.getResolution().getScaledWidth(), posZ, 0, 0, 0);
 				Helper.drawTexturedQuad(posX, posZ, width, width, 0, 0, 1, 1);
 				GlStateManager.disableAlpha();
+				GlStateManager.disableBlend();
 				event.setCanceled(true);
 			}
 		}

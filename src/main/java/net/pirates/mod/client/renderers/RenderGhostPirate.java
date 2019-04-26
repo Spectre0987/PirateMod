@@ -1,7 +1,9 @@
-package net.pirates.mod.proxy;
+package net.pirates.mod.client.renderers;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.GlStateManager.DestFactor;
+import net.minecraft.client.renderer.GlStateManager.SourceFactor;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerBipedArmor;
@@ -11,12 +13,12 @@ import net.pirates.mod.Pirate;
 import net.pirates.mod.client.models.ModelPirate;
 import net.pirates.mod.entity.EntityGhostPirate;
 
-public class RenderPirate extends RenderLiving<EntityGhostPirate>{
+public class RenderGhostPirate extends RenderLiving<EntityGhostPirate>{
 
 	public static ModelPirate model = new ModelPirate();
-	public static final ResourceLocation TEXTURE = new ResourceLocation(Pirate.MODID, "textures/entity/pirate.png");
+	public static final ResourceLocation TEXTURE = new ResourceLocation(Pirate.MODID, "textures/entity/pirates/pirate_midship_001.png");
 	
-	public RenderPirate(RenderManager rendermanagerIn) {
+	public RenderGhostPirate(RenderManager rendermanagerIn) {
 		super(rendermanagerIn, model, 0F);
 		this.addLayer(new LayerHeldItem(this));
 		this.addLayer(new LayerBipedArmor(this));
