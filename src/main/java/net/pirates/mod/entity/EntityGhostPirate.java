@@ -36,6 +36,7 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 	EntityAIAttackRanged ranged = new EntityAIAttackRanged(this, SPEED, 80, 30);
 	EntityAIAttackMelee melee = new EntityAIAttackMelee(this, SPEED, false);
 	private EnumPirateRank rank = EnumPirateRank.DECKHAND;
+	private int animationTicks = 0;
 	private ItemStack specialDrop = ItemStack.EMPTY;
 	
 	public EntityGhostPirate(World worldIn) {
@@ -119,6 +120,7 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 				ball.setPosition(posX, posY + this.getEyeHeight(), posZ);
 				world.spawnEntity(ball);
 				world.playSound(null, this.getPosition(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.MASTER, 1F, 1F);
+				this.animationTicks = 60;
 			}
 			else {
 				EntityWater water = new EntityWater(world, this);
@@ -153,10 +155,9 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 				else if(this.isShooting())
 					this.dataManager.set(SHOOTING, false);
 			}
-			if(this.getRank() == EnumPirateRank.CAPTAIN) {
-				
-			}
 		}
+		if(this.animationTicks > 0)
+			--this.animationTicks;
 	}
 	
 	public static enum EnumPirateRank{
@@ -164,10 +165,14 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 		MATE("ghosts/mate"),
 		DECKHAND("ghosts/hand");
 		
-		private ResourceLocation skin;
+		private ResourceLocation[] skin;
 		
-		EnumPirateRank(String skin) {
-			this.skin = new ResourceLocation(Pirate.MODID, "textures/entity/" + skin);
+		EnumPirateRank(String... skin) {
+			int index = 0;
+			this.skin = new ResourceLocation[skin.length];
+			for(String name : skin) {
+				//this.skin = new ResourceLocation(Pirate.MODID, "textures/entity/pirates");
+			}
 		}
 		
 		public ResourceLocation getSkin() {
