@@ -20,6 +20,8 @@ public class BlockLogs extends Block {
 	public BlockLogs() {
 		super(Material.WOOD);
 		this.setCreativeTab(Pirate.tab);
+		this.setHardness(2.5F);
+		this.setHarvestLevel("axe", -1);
 	}
 
 	@Override

@@ -16,6 +16,10 @@ item.pirates.hurdy_gurdy.name=Hurdy Gurdy
 item.pirates.grapple_hook.name=Grapple Hook
 item.pirates.rope.name=Rope
 item.pirates.sash.name=Sash
+item.pirates.hat.name=Tricorn
+item.pirates.bucket.name=Bucket
+item.pirates.flintlock.name=Flintlock
+item.pirates.dingy.name=Dingy
 
 tile.pirates.cannon.name=Cannon
 tile.pirates.cell.name=Cell
@@ -35,6 +39,9 @@ tile.pirates.cannonball.name=Cannonball
 tile.pirates.square_sail.name=Square Sail
 tile.pirates.jib_sheet.name=Jib Sheet
 tile.pirates.capstan.name=Capstan
+tile.pirates.cleat.name=Cleat
+
+entity.pirate.name=Ghost Pirate
 
 inventory.chest.pirate=Cursed Chest
 

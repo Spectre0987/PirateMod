@@ -9,23 +9,25 @@ import net.minecraft.entity.ai.EntityAIAttackRanged;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.pirates.mod.Pirate;
-import net.pirates.mod.entity.ai.EntityAILoadCannon;
 import net.pirates.mod.items.ItemFlintlock;
 import net.pirates.mod.items.PItems;
 
@@ -33,6 +35,7 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 
 	public static final double SPEED = 0.5;
 	public static DataParameter<Boolean> SHOOTING = EntityDataManager.createKey(EntityGhostPirate.class, DataSerializers.BOOLEAN);
+	public static final AttributeModifier CAPTAIN_MOD = new AttributeModifier("Captain", 6D, 0);
 	EntityAIAttackRanged ranged = new EntityAIAttackRanged(this, SPEED, 80, 30);
 	EntityAIAttackMelee melee = new EntityAIAttackMelee(this, SPEED, false);
 	private EnumPirateRank rank = EnumPirateRank.DECKHAND;
@@ -44,18 +47,20 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
 		this.tasks.addTask(0, new EntityAIWatchClosest(this, EntityPlayer.class, 30));
 		this.tasks.addTask(3, new EntityAIWander(this, SPEED));
-		this.tasks.addTask(2, new EntityAILoadCannon(this));
+		this.setPathPriority(PathNodeType.WATER, -1.0F);
+		this.isImmuneToFire = true;
 	}
 
 	@Override
 	public boolean shouldRenderInPass(int pass) {
-		return pass == 1;
+		return true;
 	}
 
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(SPEED);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10D);
 	}
 
 	@Override
@@ -90,20 +95,26 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 	}
 	
 	public void genRandomGear() {
-		this.setLeftHanded(true);
 		double chance = this.rand.nextDouble();
-		if(chance < 0.5)
+		if(chance < 0.60)
 			this.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(PItems.cutlass));
-		else if(chance < 0.75) {
+		else if(chance < 0.70) {
 			this.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(PItems.flintlock));
+			this.tasks.removeTask(melee);
+			this.tasks.addTask(1, ranged);
+		}
+		else if(chance < 0.75) {
+			this.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(PItems.bucket));
 			this.tasks.removeTask(melee);
 			this.tasks.addTask(1, ranged);
 		}
 		else
 			this.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(PItems.dagger));
-		if(rank == EnumPirateRank.CAPTAIN)
-			this.setHeldItem(EnumHand.OFF_HAND, new ItemStack(Items.SHIELD));
 		this.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(PItems.pirateHat));
+		if(this.getRank() == EnumPirateRank.CAPTAIN) {
+			this.setHeldItem(EnumHand.OFF_HAND, new ItemStack(Items.SHIELD));
+			this.getEntityAttribute(SharedMonsterAttributes.ARMOR).applyModifier(CAPTAIN_MOD);
+		}
 	}
 	
 	@Override
@@ -153,12 +164,19 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 				else if(this.isShooting())
 					this.dataManager.set(SHOOTING, false);
 			}
-			if(this.getRank() == EnumPirateRank.CAPTAIN) {
-				
-			}
 		}
 	}
-	
+
+	@Override
+	protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
+		if(!world.isRemote && rand.nextDouble() < 0.1 + (0.1 * lootingModifier))
+			InventoryHelper.spawnItemStack(world, posX, posY, posZ, new ItemStack(PItems.pirateHat));
+			
+	}
+
+	@Override
+	protected void dropEquipment(boolean wasRecentlyHit, int lootingModifier) {}
+
 	public static enum EnumPirateRank{
 		CAPTAIN("ghosts/captain"),
 		MATE("ghosts/mate"),

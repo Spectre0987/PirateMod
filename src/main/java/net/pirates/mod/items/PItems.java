@@ -31,6 +31,7 @@ public class PItems {
 	public static Item dagger = register(new ItemSword(ToolMaterial.IRON), "dagger");
 	public static Item pirateHat = register(new ItemPirateClothes(), "hat");
 	public static Item bucket = register(new ItemDamageable(150), "bucket");
+	public static Item hammer = register(new ItemDamageable(150), "hammer");
 	
 	public static void register() {
 		

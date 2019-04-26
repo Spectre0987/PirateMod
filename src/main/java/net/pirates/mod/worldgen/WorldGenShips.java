@@ -46,6 +46,7 @@ public class WorldGenShips implements IWorldGenerator {
 							EntityGhostPirate pirate = new EntityGhostPirate(world);
 							pirate.setPosition(cp.getX() + 0.5, cp.getY(), cp.getZ() + 0.5);
 							pirate.setRank(EnumPirateRank.CAPTAIN);
+							pirate.genRandomGear();
 							world.spawnEntity(pirate);
 						}
 						if(name.equals("ghost_chest"))

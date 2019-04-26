@@ -2,6 +2,7 @@ package net.pirates.mod.entity.ai;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.util.math.BlockPos;
 import net.pirates.mod.blocks.BlockCannon;
 import net.pirates.mod.entity.EntityGhostPirate;
@@ -24,12 +25,13 @@ public class EntityAILoadCannon extends EntityAIBase{
 
 	@Override
 	public void startExecuting() {
-		super.startExecuting();
+		
 	}
 
 	@Override
 	public void updateTask() {
 		pirate.getMoveHelper().setMoveTo(cannonPos.getX(), cannonPos.getY(), cannonPos.getZ(), pirate.getAIMoveSpeed());
+		pirate.getMoveHelper().action = EntityMoveHelper.Action.MOVE_TO;
 	}
 
 	@Override
