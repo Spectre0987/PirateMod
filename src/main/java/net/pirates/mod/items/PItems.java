@@ -32,6 +32,7 @@ public class PItems {
 	public static Item pirateHat = register(new ItemPirateClothes(), "hat");
 	public static Item bucket = register(new ItemDamageable(150), "bucket");
 	public static Item hammer = register(new ItemDamageable(150), "hammer");
+	public static Item flintlock_ball = register(new ItemBase(), "flintlock_ball");
 	
 	public static void register() {
 		
