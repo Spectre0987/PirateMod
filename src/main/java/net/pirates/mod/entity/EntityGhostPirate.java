@@ -1,5 +1,7 @@
 package net.pirates.mod.entity;
 
+import java.util.Random;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.IRangedAttackMob;
@@ -16,6 +18,8 @@ import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -35,10 +39,12 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 
 	public static final double SPEED = 0.5;
 	public static DataParameter<Boolean> SHOOTING = EntityDataManager.createKey(EntityGhostPirate.class, DataSerializers.BOOLEAN);
+	public static DataParameter<Integer> SKIN_INDEX = EntityDataManager.createKey(EntityGhostPirate.class, DataSerializers.VARINT);
 	public static final AttributeModifier CAPTAIN_MOD = new AttributeModifier("Captain", 6D, 0);
 	EntityAIAttackRanged ranged = new EntityAIAttackRanged(this, SPEED, 80, 30);
 	EntityAIAttackMelee melee = new EntityAIAttackMelee(this, SPEED, false);
 	private EnumPirateRank rank = EnumPirateRank.DECKHAND;
+	private int animationTicks = 0;
 	private ItemStack specialDrop = ItemStack.EMPTY;
 	
 	public EntityGhostPirate(World worldIn) {
@@ -49,11 +55,12 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 		this.tasks.addTask(3, new EntityAIWander(this, SPEED));
 		this.setPathPriority(PathNodeType.WATER, -1.0F);
 		this.isImmuneToFire = true;
+		//this.setRank(EnumPirateRank.DECKHAND);
 	}
 
 	@Override
 	public boolean shouldRenderInPass(int pass) {
-		return true;
+		return pass == 1;
 	}
 
 	@Override
@@ -65,23 +72,29 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 
 	@Override
 	public void writeEntityToNBT(NBTTagCompound compound) {
-		if(this.getHeldItemMainhand().getItem() instanceof ItemFlintlock)
+		Item held = this.getHeldItemMainhand().getItem();
+		if(held instanceof ItemFlintlock || held instanceof ItemBucket)
 			compound.setBoolean("range", true);
+		compound.setString("rank", this.getRank().name());
+		compound.setInteger("skin_index", this.dataManager.get(SKIN_INDEX));
 		super.writeEntityToNBT(compound);
 	}
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound compound) {
+		super.readEntityFromNBT(compound);
 		if(compound.hasKey("range") && compound.getBoolean("range")) {
 			this.tasks.addTask(1, ranged);
 			this.tasks.removeTask(melee);
 		}
-			
-		super.readEntityFromNBT(compound);
+		this.rank = EnumPirateRank.valueOf(compound.getString("rank"));
+		this.dataManager.set(SKIN_INDEX, compound.getInteger("skin_index"));
 	}
 	
 	public void setRank(EnumPirateRank rank) {
 		this.rank = rank;
+		if(!world.isRemote)
+			this.dataManager.set(SKIN_INDEX, this.rand.nextInt(rank.getSkins().length));
 	}
 	
 	public EnumPirateRank getRank() {
@@ -110,10 +123,13 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 		}
 		else
 			this.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(PItems.dagger));
-		this.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(PItems.pirateHat));
+		if(rand.nextDouble() < 0.25)
+			this.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(PItems.pirateHat));
 		if(this.getRank() == EnumPirateRank.CAPTAIN) {
 			this.setHeldItem(EnumHand.OFF_HAND, new ItemStack(Items.SHIELD));
+			this.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(PItems.captain_cutlass));
 			this.getEntityAttribute(SharedMonsterAttributes.ARMOR).applyModifier(CAPTAIN_MOD);
+			this.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(PItems.pirateHat));
 		}
 	}
 	
@@ -130,6 +146,7 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 				ball.setPosition(posX, posY + this.getEyeHeight(), posZ);
 				world.spawnEntity(ball);
 				world.playSound(null, this.getPosition(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.MASTER, 1F, 1F);
+				this.animationTicks = 60;
 			}
 			else {
 				EntityWater water = new EntityWater(world, this);
@@ -147,6 +164,7 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 	protected void entityInit() {
 		super.entityInit();
 		this.dataManager.register(SHOOTING, false);
+		this.dataManager.register(SKIN_INDEX, 0);
 	}
 	
 	public boolean isShooting() {
@@ -165,12 +183,22 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 					this.dataManager.set(SHOOTING, false);
 			}
 		}
+		if(this.animationTicks > 0)
+			--this.animationTicks;
 	}
 
+	public int getSkinIndex() {
+		return this.dataManager.get(SKIN_INDEX);
+	}
+	
 	@Override
 	protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
-		if(!world.isRemote && rand.nextDouble() < 0.1 + (0.1 * lootingModifier))
-			InventoryHelper.spawnItemStack(world, posX, posY, posZ, new ItemStack(PItems.pirateHat));
+		if(!world.isRemote) {
+			if(rand.nextDouble() < 0.5 + (0.1 * lootingModifier))
+				InventoryHelper.spawnItemStack(world, posX, posY, posZ, new ItemStack(this.getHeldItemMainhand().getItem()));
+			if(this.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == PItems.pirateHat)
+				InventoryHelper.spawnItemStack(world, posX, posY, posZ, new ItemStack(PItems.pirateHat));
+		}
 			
 	}
 
@@ -178,19 +206,37 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 	protected void dropEquipment(boolean wasRecentlyHit, int lootingModifier) {}
 
 	public static enum EnumPirateRank{
-		CAPTAIN("ghosts/captain"),
-		MATE("ghosts/mate"),
-		DECKHAND("ghosts/hand");
+		CAPTAIN("pirate_midship_002",
+				"pirate_midship_003"),
+		MATE("pirate_braced_002",
+			"pirate_braced_003",
+			"pirate_deckhand_004",
+			"pirate_midship_001",
+			"pirate_midship_004"),
+		DECKHAND("pirate_braced_001",
+				"pirate_braced_004",
+				"pirate_deckhand_001",
+				"pirate_deckhand_002",
+				"pirate_deckhand_003");
 		
-		private ResourceLocation skin;
+		private ResourceLocation[] skin;
+		private static Random rand = new Random();
 		
-		EnumPirateRank(String skin) {
-			this.skin = new ResourceLocation(Pirate.MODID, "textures/entity/" + skin);
+		EnumPirateRank(String... skin) {
+			int index = 0;
+			this.skin = new ResourceLocation[skin.length];
+			for(String name : skin) {
+				this.skin[index] = new ResourceLocation(Pirate.MODID, "textures/entity/pirates/" + name + ".png");
+				++index;
+			}
 		}
 		
-		public ResourceLocation getSkin() {
+		public ResourceLocation[] getSkins() {
 			return this.skin;
 		}
+		
+		public ResourceLocation getSkin(int index){
+			return this.skin[index];
+		}
 	}
-
 }
