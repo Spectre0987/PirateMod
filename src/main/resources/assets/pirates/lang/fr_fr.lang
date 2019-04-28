@@ -12,6 +12,10 @@ item.pirates.message_bottle.name=Message dans une bouteille
 item.pirates.sextant.name=Sextant
 item.pirates.ram_rod.name=Tige de bélier
 item.pirates.lantern.name=Lanterne
+item.pirates.hurdy_gurdy.name=Vielle à roue
+item.pirates.grapple_hook.name=Crochet de grappin
+item.pirates.rope.name=Corde
+item.pirates.sash.name=Foulard
 
 tile.pirates.cannon.name=Canon
 tile.pirates.cell.name=Cellule
@@ -28,6 +32,9 @@ tile.pirates.ghastly_bell.name=Cloche épouvantable
 tile.pirates.pirate_chest.name=Coffre épouvantable
 tile.pirates.forge.name=Forge
 tile.pirates.cannonball.name=Boulet de canon
+tile.pirates.square_sail.name=Voile carrée
+tile.pirates.jib_sheet.name=Flèche de foc
+tile.pirates.capstan.name=Cabestan
 
 inventory.chest.pirate=Coffre maudit
 
