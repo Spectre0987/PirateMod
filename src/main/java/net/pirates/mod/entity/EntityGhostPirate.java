@@ -13,6 +13,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -44,18 +45,19 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 	EntityAIAttackRanged ranged = new EntityAIAttackRanged(this, SPEED, 80, 30);
 	EntityAIAttackMelee melee = new EntityAIAttackMelee(this, SPEED, false);
 	private EnumPirateRank rank = EnumPirateRank.DECKHAND;
-	private int animationTicks = 0;
+	public int animationTicks = 0;
 	private ItemStack specialDrop = ItemStack.EMPTY;
 	
 	public EntityGhostPirate(World worldIn) {
 		super(worldIn);
 		this.tasks.addTask(1, melee);
 		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
+		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityVillager.class, false));
 		this.tasks.addTask(0, new EntityAIWatchClosest(this, EntityPlayer.class, 30));
 		this.tasks.addTask(3, new EntityAIWander(this, SPEED));
 		this.setPathPriority(PathNodeType.WATER, -1.0F);
 		this.isImmuneToFire = true;
-		//this.setRank(EnumPirateRank.DECKHAND);
+		this.setRank(EnumPirateRank.DECKHAND);
 	}
 
 	@Override
@@ -87,14 +89,16 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 			this.tasks.addTask(1, ranged);
 			this.tasks.removeTask(melee);
 		}
-		this.rank = EnumPirateRank.valueOf(compound.getString("rank"));
+		this.setRank(EnumPirateRank.valueOf(compound.getString("rank")));
 		this.dataManager.set(SKIN_INDEX, compound.getInteger("skin_index"));
 	}
 	
 	public void setRank(EnumPirateRank rank) {
 		this.rank = rank;
-		if(!world.isRemote)
+		if(!world.isRemote) {
 			this.dataManager.set(SKIN_INDEX, this.rand.nextInt(rank.getSkins().length));
+			System.out.println(this.dataManager.get(SKIN_INDEX));
+		}
 	}
 	
 	public EnumPirateRank getRank() {
@@ -220,7 +224,6 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 				"pirate_deckhand_003");
 		
 		private ResourceLocation[] skin;
-		private static Random rand = new Random();
 		
 		EnumPirateRank(String... skin) {
 			int index = 0;

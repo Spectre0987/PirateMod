@@ -23,7 +23,9 @@ public class ModelPirate extends ModelPlayer{
 				this.getMainArm(entityIn).rotateAngleY = this.bipedHead.rotateAngleY;
 				this.getMainArm(entityIn).rotateAngleZ = this.bipedHead.rotateAngleZ;
 			}
-			//if(pirate.) {}
+			if(pirate.animationTicks > 0) {
+				this.getMainArm(pirate).rotateAngleX = (float)Math.toRadians(30);
+			}
 		}
 		this.bipedBody.render(scale);
 		this.bipedHead.render(scale);
