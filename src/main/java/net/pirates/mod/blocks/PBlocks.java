@@ -42,6 +42,7 @@ public class PBlocks {
 	public static Block capstan = register(new BlockCapstan(), "capstan");
 	//public static Block pully = register(new BlockPulley(), "pully");
 	public static Block ship_wheel = register(new BlockWheel(), "ship_wheel");
+	public static Block liquor_rack = register(new BlockLiquorRack(), "liquor_rack");
 	
 	public static Block light_te = register(new BlockLight(), "light_te");	
 	

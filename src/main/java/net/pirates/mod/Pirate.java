@@ -47,6 +47,7 @@ import net.pirates.mod.tileentity.TileEntityCell;
 import net.pirates.mod.tileentity.TileEntityCleat;
 import net.pirates.mod.tileentity.TileEntityForge;
 import net.pirates.mod.tileentity.TileEntityLight;
+import net.pirates.mod.tileentity.TileEntityLiquorRack;
 import net.pirates.mod.tileentity.TileEntityPirateChest;
 import net.pirates.mod.tileentity.TileEntityPully;
 import net.pirates.mod.worldgen.WorldGenShips;
@@ -102,6 +103,7 @@ public class Pirate
     	registerTileEntity(TileEntityLight.class, "light_te");
     	registerTileEntity(TileEntityCleat.class, "cleat");
     	registerTileEntity(TileEntityPully.class, "pully");
+    	registerTileEntity(TileEntityLiquorRack.class, "liquor_rack");
     	
     	proxy.preInit();
     	

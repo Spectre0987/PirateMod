@@ -1,5 +1,8 @@
 package net.pirates.mod.items;
 
+import java.util.List;
+
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -34,14 +37,35 @@ public class ItemFlintlock extends Item {
 					data.ammo = ItemStack.EMPTY;
 					held.getTagCompound().setTag("data", data.write());
 				}
+				else {
+					if(data.ammo.isEmpty()) {
+						ItemStack ammo = load(EnumLoadType.AMMO, playerIn);
+						if(!ammo.isEmpty()) {
+							data.ammo = ammo;
+						}
+						held.getTagCompound().setTag("data", data.write());
+					}
+				}
 			}
 			else {
 				NBTTagCompound tag = held.getTagCompound() == null ? new NBTTagCompound() : held.getTagCompound();
-				//TODO: Load code
+				ItemStack ammo = load(EnumLoadType.AMMO, playerIn);
+				ItemStack powder = load(EnumLoadType.POWDER, playerIn);
+				tag.setTag("data", new FlintlockData(ammo, !powder.isEmpty() ? 0.5 : 0).write());
 				held.setTagCompound(tag);
 			}
 		}
 		return super.onItemRightClick(worldIn, playerIn, handIn);
+	}
+
+	@Override
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
+		if(stack.getTagCompound() != null && stack.getTagCompound().hasKey("data")) {
+			FlintlockData data = new FlintlockData(stack.getTagCompound());
+			if(!data.ammo.isEmpty())
+				tooltip.add("Ammo: " + data.ammo.getDisplayName());
+		}
+		super.addInformation(stack, worldIn, tooltip, flagIn);
 	}
 
 	public static class FlintlockData{

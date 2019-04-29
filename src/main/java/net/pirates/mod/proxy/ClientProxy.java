@@ -9,6 +9,7 @@ import net.pirates.mod.client.renderers.RenderCleat;
 import net.pirates.mod.client.renderers.RenderDingy;
 import net.pirates.mod.client.renderers.RenderGhostPirate;
 import net.pirates.mod.client.renderers.RenderKraken;
+import net.pirates.mod.client.renderers.RenderLiquorRack;
 import net.pirates.mod.client.renderers.RenderMermaid;
 import net.pirates.mod.client.renderers.RenderPirateHuman;
 import net.pirates.mod.client.renderers.RenderShark;
@@ -26,6 +27,7 @@ import net.pirates.mod.entity.EntityWater;
 import net.pirates.mod.tileentity.TileEntityBoatSling;
 import net.pirates.mod.tileentity.TileEntityCell;
 import net.pirates.mod.tileentity.TileEntityCleat;
+import net.pirates.mod.tileentity.TileEntityLiquorRack;
 
 public class ClientProxy extends ServerProxy{
 
@@ -35,6 +37,7 @@ public class ClientProxy extends ServerProxy{
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCell.class, new RenderCell());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBoatSling.class, new RenderBoatSling());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCleat.class, new RenderCleat());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLiquorRack.class, new RenderLiquorRack());
 	}
 
 	@Override

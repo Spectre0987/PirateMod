@@ -34,6 +34,7 @@ public class PItems {
 	public static Item hammer = register(new ItemDamageable(150), "hammer");
 	public static Item flintlock_ball = register(new ItemBase(), "flintlock_ball");
 	public static Item captain_cutlass = register(new ItemSword(ToolMaterial.DIAMOND), "captain_cutlass");
+	public static Item glass = register(new ItemBase(), "glass_full");
 	
 	public static void register() {
 		
