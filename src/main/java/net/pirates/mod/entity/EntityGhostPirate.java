@@ -12,6 +12,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -45,7 +46,8 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 	public static final AttributeModifier CAPTAIN_MOD = new AttributeModifier("Captain", 6D, 0);
 	EntityAIAttackRanged ranged = new EntityAIAttackRanged(this, SPEED, 80, 30);
 	EntityAIAttackMelee melee = new EntityAIAttackMelee(this, SPEED, false);
-	private int animationTicks = 0;
+	public int animationTicks = 0;
+
 	private ItemStack specialDrop = ItemStack.EMPTY;
 	private int dustRotation = 0;
 	
@@ -53,10 +55,12 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 		super(worldIn);
 		this.tasks.addTask(1, melee);
 		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
+		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityVillager.class, false));
 		this.tasks.addTask(0, new EntityAIWatchClosest(this, EntityPlayer.class, 30));
 		this.tasks.addTask(3, new EntityAIWander(this, SPEED));
 		this.setPathPriority(PathNodeType.WATER, -1.0F);
 		this.isImmuneToFire = true;
+		this.setRank(EnumPirateRank.DECKHAND);
 	}
 
 	@Override

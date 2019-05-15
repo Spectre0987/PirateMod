@@ -1,6 +1,9 @@
 package net.pirates.mod.capability;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryHelper;
@@ -8,13 +11,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumHand;
 import net.pirates.mod.Pirate;
+import net.pirates.mod.misc.EnumWeaponType;
 import net.pirates.mod.packets.MessageSync;
 
 public class CapabilityDrunk implements IDrunk{
 
+	private static Random rand = new Random();
+	private static UUID profencincy = UUID.fromString("2a385745-0686-4e89-9ccb-1ff556228448");
+	public Map<EnumWeaponType, Double> prof = new HashMap<EnumWeaponType, Double>();
 	private int drunkTicks = 0;
 	private boolean isDirty = true;
-	private static Random rand = new Random();
 	
 	@Override
 	public int getDrunkTicks() {
@@ -39,7 +45,7 @@ public class CapabilityDrunk implements IDrunk{
 
 	@Override
 	public void tickDrunk(EntityPlayer player) {
-		if(this.getDrunkTicks() > 0) {
+		if(this.getDrunkTicks() > 3000) {
 			player.rotationYaw += player.world.getWorldTime() % 100 > 50 ? 0.25 : -0.25;
 			player.rotationPitch += player.world.getWorldTime() % 100 > 50 ? 0.25 : -0.25;
 			drunkTicks--;
@@ -70,5 +76,15 @@ public class CapabilityDrunk implements IDrunk{
 
 	public void sync(EntityPlayer player) {
 		Pirate.NETWORK.sendToAll(new MessageSync(player.getUniqueID(), this.writeNBT()));
+	}
+	
+	public double getProficiency(EnumWeaponType type) {
+		if(prof.containsKey(type))
+			return prof.get(type);
+		return 0.0;
+	}
+	
+	public void setProfenciency(EnumWeaponType type, double amt) {
+		prof.put(type, amt);
 	}
 }

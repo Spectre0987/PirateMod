@@ -29,7 +29,8 @@ public class PItems {
 	public static Item rope = register(new ItemRope(), "rope");
 	public static Item dingy = register(new ItemESpawner(EntityDingy::new), "dingy");
 	public static Item dagger = register(new ItemSword(ToolMaterial.IRON), "dagger");
-	public static Item pirateHat = register(new ItemPirateClothes(), "hat");
+	public static Item pirateHat = register(new ItemPirateClothes(0), "hat");
+	public static Item barbossaHat = register(new ItemPirateClothes(1), "barbossa_hat");
 	public static Item bucket = register(new ItemDamageable(150), "bucket");
 	public static Item hammer = register(new ItemDamageable(150), "hammer");
 	public static Item flintlock_ball = register(new ItemBase(), "flintlock_ball");
