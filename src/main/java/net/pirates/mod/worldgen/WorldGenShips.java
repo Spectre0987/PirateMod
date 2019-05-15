@@ -4,8 +4,10 @@ import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -21,6 +23,9 @@ import net.pirates.mod.blocks.PBlocks;
 import net.pirates.mod.config.PirateConfig;
 import net.pirates.mod.entity.EntityGhostPirate;
 import net.pirates.mod.entity.EntityGhostPirate.EnumPirateRank;
+import net.pirates.mod.tileentity.TileEntityBarrel;
+import net.pirates.mod.tileentity.TileEntityCell;
+import net.pirates.mod.tileentity.TileEntityPirateChest;
 
 public class WorldGenShips implements IWorldGenerator {
 
@@ -39,10 +44,10 @@ public class WorldGenShips implements IWorldGenerator {
 				Map<BlockPos, String> map = temp.getDataBlocks(pos.add(8, -1, 8), ps);
 				for(BlockPos cp : map.keySet()) {
 					String name = map.get(cp);
-					TileEntityChest chest = (TileEntityChest)world.getTileEntity(cp.down());
-					if(chest != null) {
+					TileEntity tile = world.getTileEntity(cp.down());
+					if(tile != null) {
 						if(name.equals("ghost_captian")) {
-							chest.setLootTable(new ResourceLocation(Pirate.MODID, "ghost_captain"), random.nextLong());
+							((TileEntityChest)tile).setLootTable(new ResourceLocation(Pirate.MODID, "ghost_captain"), random.nextLong());
 							EntityGhostPirate pirate = new EntityGhostPirate(world);
 							pirate.setPosition(cp.getX() + 0.5, cp.getY(), cp.getZ() + 0.5);
 							pirate.setRank(EnumPirateRank.CAPTAIN);
@@ -50,7 +55,13 @@ public class WorldGenShips implements IWorldGenerator {
 							world.spawnEntity(pirate);
 						}
 						if(name.equals("ghost_chest"))
-							chest.setLootTable(new ResourceLocation("minecraft", "chests/simple_dungeon"), random.nextLong());
+							((TileEntityChest)tile).setLootTable(new ResourceLocation("minecraft", "chests/simple_dungeon"), random.nextLong());
+						if(name.equals("cage"))
+							((TileEntityCell)tile).setEntity(new EntityVillager(world));
+						if(name.equals("cursedChest"))
+							((TileEntityPirateChest)tile).setLoot(new ResourceLocation(Pirate.MODID, "cursed_chest"));
+						if(name.equals("rum"))
+							((TileEntityBarrel)tile).setRumAmount((int)(random.nextDouble() * 5000));
 					}
 					if(name.equals("pirateSpawner")) {
 						int max = 8 + random.nextInt(4);

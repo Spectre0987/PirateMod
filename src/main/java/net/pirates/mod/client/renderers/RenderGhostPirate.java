@@ -22,8 +22,7 @@ public class RenderGhostPirate extends RenderLiving<EntityGhostPirate>{
 
 	@Override
 	protected ResourceLocation getEntityTexture(EntityGhostPirate entity) {
-		ResourceLocation skin = entity.getRank().getSkin(entity.getSkinIndex());
-		return skin;
+		return entity.getRank().getSkin(entity.getSkinIndex());
 	}
 
 	@Override
@@ -32,8 +31,8 @@ public class RenderGhostPirate extends RenderLiving<EntityGhostPirate>{
 			GlStateManager.pushMatrix();
 			GlStateManager.enableAlpha();
 			GlStateManager.enableBlend();
-			GlStateManager.color(0.384F, 0.737F, 0.607F, 0.5F);
 			Minecraft.getMinecraft().entityRenderer.disableLightmap();
+			GlStateManager.color(0.384F, 0.737F, 0.607F, 0.5F);
 			super.doRender(entity, x, y, z, entityYaw, partialTicks);
 			Minecraft.getMinecraft().entityRenderer.enableLightmap();
 			GlStateManager.color(1, 1, 1, 1);

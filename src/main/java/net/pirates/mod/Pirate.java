@@ -57,7 +57,7 @@ public class Pirate
 {
     public static final String MODID = "pirates";
     public static final String NAME = "Pirate Mod";
-    public static final String VERSION = "0.0.2";
+    public static final String VERSION = "0.0.5";
 
     private static Logger logger;
 
@@ -117,7 +117,6 @@ public class Pirate
     	LootTableList.register(new ResourceLocation(MODID, "cursed_chest"));
     	
     	LootTableList.register(new ResourceLocation(MODID, "ghost_captain"));
-    	//LootTableList.register(new ResourceLocation(MODID, "ghost_chest"));
     	
     	ModelRegistry.registerModel("dingy_mast");
     	ModelRegistry.registerModel("dingy_sail");
