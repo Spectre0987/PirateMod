@@ -6,6 +6,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemSword;
+import net.pirates.mod.Pirate;
 
 public class ItemMelee extends ItemSword {
 
@@ -13,6 +14,7 @@ public class ItemMelee extends ItemSword {
 	
 	public ItemMelee(ToolMaterial material, double speed) {
 		super(material);
+		this.setCreativeTab(Pirate.tab);
 		this.speed = speed;
 	}
 
@@ -21,7 +23,7 @@ public class ItemMelee extends ItemSword {
 		Multimap<String, AttributeModifier> att = super.getItemAttributeModifiers(slot);
 		if(slot == EntityEquipmentSlot.MAINHAND) {
 			att.removeAll(SharedMonsterAttributes.ATTACK_SPEED.getName());
-			att.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", -1, 0));
+			att.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", speed, 0));
 		}
 		return att;
 	}

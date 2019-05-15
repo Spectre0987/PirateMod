@@ -26,6 +26,11 @@
                     "type":"item",
                     "name":"pirates:sextant",
                     "weight": 5
+                },
+                {
+                    "type":"item",
+                    "name":"pirates:rapier",
+                    "weight": 2
                 }
             ]
         },

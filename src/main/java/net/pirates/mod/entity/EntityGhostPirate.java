@@ -11,8 +11,6 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -29,20 +27,17 @@ import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.pirates.mod.Pirate;
+import net.pirates.mod.entity.pirates.EntityPirate;
 import net.pirates.mod.items.ItemFlintlock;
 import net.pirates.mod.items.PItems;
 
-public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
+public class EntityGhostPirate extends EntityPirate implements IRangedAttackMob{
 
 	public static final double SPEED = 0.5;
 	public static DataParameter<Boolean> SHOOTING = EntityDataManager.createKey(EntityGhostPirate.class, DataSerializers.BOOLEAN);
-	public static DataParameter<Integer> SKIN_INDEX = EntityDataManager.createKey(EntityGhostPirate.class, DataSerializers.VARINT);
-	public static DataParameter<String> RANK = EntityDataManager.createKey(EntityGhostPirate.class, DataSerializers.STRING);
 	public static final AttributeModifier CAPTAIN_MOD = new AttributeModifier("Captain", 6D, 0);
 	EntityAIAttackRanged ranged = new EntityAIAttackRanged(this, SPEED, 80, 30);
 	EntityAIAttackMelee melee = new EntityAIAttackMelee(this, SPEED, false);
@@ -55,7 +50,6 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 		super(worldIn);
 		this.tasks.addTask(1, melee);
 		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityPlayer.class, false));
-		this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityVillager.class, false));
 		this.tasks.addTask(0, new EntityAIWatchClosest(this, EntityPlayer.class, 30));
 		this.tasks.addTask(3, new EntityAIWander(this, SPEED));
 		this.setPathPriority(PathNodeType.WATER, -1.0F);
@@ -97,18 +91,6 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 		this.dataManager.set(SKIN_INDEX, compound.getInteger("skin_index"));
 	}
 	
-	public void setRank(EnumPirateRank rank) {
-		if(!world.isRemote) {
-			int skin = this.world.rand.nextInt(rank.getSkins().length);
-			this.dataManager.set(SKIN_INDEX, skin);
-			this.dataManager.set(RANK, rank.name());
-		}
-	}
-	
-	public EnumPirateRank getRank() {
-		return EnumPirateRank.valueOf(this.dataManager.get(RANK));
-	}
-
 	@Override
 	public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, IEntityLivingData livingdata) {
 		this.genRandomGear();
@@ -172,8 +154,6 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 	protected void entityInit() {
 		super.entityInit();
 		this.dataManager.register(SHOOTING, false);
-		this.dataManager.register(SKIN_INDEX, 0);
-		this.dataManager.register(RANK, EnumPirateRank.DECKHAND.name());
 	}
 	
 	public boolean isShooting() {
@@ -207,10 +187,6 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 			}
 		}
 	}
-
-	public int getSkinIndex() {
-		return this.dataManager.get(SKIN_INDEX);
-	}
 	
 	@Override
 	protected void dropFewItems(boolean wasRecentlyHit, int lootingModifier) {
@@ -224,41 +200,4 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 
 	@Override
 	protected void dropEquipment(boolean wasRecentlyHit, int lootingModifier) {}
-
-	public static enum EnumPirateRank{
-		CAPTAIN(
-			"pirate_midship_002",
-			"pirate_midship_003"),
-		MATE(
-			"pirate_braced_002",
-			"pirate_braced_003",
-			"pirate_deckhand_004",
-			"pirate_midship_001",
-			"pirate_midship_004"),
-		DECKHAND(
-			"pirate_braced_001",
-			"pirate_braced_004",
-			"pirate_deckhand_001",
-			"pirate_deckhand_002",
-			"pirate_deckhand_003");
-		
-		private ResourceLocation[] skin;
-		
-		EnumPirateRank(String... skin) {
-			int index = 0;
-			this.skin = new ResourceLocation[skin.length];
-			for(String name : skin) {
-				this.skin[index] = new ResourceLocation(Pirate.MODID, "textures/entity/pirates/" + name + ".png");
-				++index;
-			}
-		}
-		
-		public ResourceLocation[] getSkins() {
-			return this.skin;
-		}
-		
-		public ResourceLocation getSkin(int index){
-			return this.skin[index];
-		}
-	}
 }

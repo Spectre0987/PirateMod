@@ -35,6 +35,7 @@ import net.pirates.mod.entity.EntityPirateVillager;
 import net.pirates.mod.entity.EntityPulledBlock;
 import net.pirates.mod.entity.EntityShark;
 import net.pirates.mod.entity.EntityWater;
+import net.pirates.mod.entity.pirates.EntityPirateCursed;
 import net.pirates.mod.handlers.EntityHelper;
 import net.pirates.mod.items.PItems;
 import net.pirates.mod.packets.MessageSync;
@@ -93,6 +94,7 @@ public class Pirate
     	EntityHelper.registerWaterMobs(EntityDingy.class, "dingy");
     	EntityHelper.registerProjectiles(EntityPulledBlock.class, "pulled_block");
     	EntityHelper.registerProjectiles(EntityWater.class, "bucket_water");
+    	EntityHelper.registerMobs(EntityPirateCursed.class, "cursed_pirate");
     	
     	registerTileEntity(TileEntityCell.class, "cell");
     	registerTileEntity(TileEntityBoatSling.class, "boat_sling");

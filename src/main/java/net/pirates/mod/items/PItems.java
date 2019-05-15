@@ -16,7 +16,7 @@ public class PItems {
 	
 	public static Item pirateBoots;
 	public static Item cutlass;
-	public static Item flintlock;
+	public static Item flintlock = register(new ItemFlintlock(), "flintlock");
 	public static Item powder_flask;
 	public static Item rum = register(new ItemRumBottle(), "rum");
 	public static Item telescope = register(new ItemTelescope(), "telescope");
@@ -36,13 +36,11 @@ public class PItems {
 	public static Item flintlock_ball = register(new ItemBase(), "flintlock_ball");
 	public static Item captain_cutlass = register(new ItemSword(ToolMaterial.DIAMOND).setCreativeTab(Pirate.tab), "captain_cutlass");
 	public static Item glass = register(new ItemBase(), "glass_full");
-	public static Item rapier = register(new ItemMelee(ToolMaterial.IRON, 0.1), "rapier");
+	public static Item rapier = register(new ItemMelee(ToolMaterial.IRON, -1), "rapier");
 	
 	public static void register() {
 		
 		cutlass = register(new ItemSword(ToolMaterial.DIAMOND).setCreativeTab(Pirate.tab), "cutlass");
-		
-		flintlock = register(new ItemFlintlock().setCreativeTab(Pirate.tab), "flintlock");
 		
 		powder_flask = register(new ItemPowderFlask().setCreativeTab(Pirate.tab), "powder_flask");
 		

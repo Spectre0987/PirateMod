@@ -21,7 +21,7 @@ import net.pirates.mod.Pirate;
 import net.pirates.mod.blocks.PBlocks;
 import net.pirates.mod.config.PirateConfig;
 import net.pirates.mod.entity.EntityGhostPirate;
-import net.pirates.mod.entity.EntityGhostPirate.EnumPirateRank;
+import net.pirates.mod.entity.pirates.EntityPirate.EnumPirateRank;
 import net.pirates.mod.helpers.Helper;
 import net.pirates.mod.tileentity.TileEntityBarrel;
 import net.pirates.mod.tileentity.TileEntityCell;
