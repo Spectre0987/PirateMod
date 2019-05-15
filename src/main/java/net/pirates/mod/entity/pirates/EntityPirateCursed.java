@@ -45,8 +45,14 @@ public class EntityPirateCursed extends EntityPirate{
 
 	@Override
 	public void onLivingUpdate() {
-		// TODO Auto-generated method stub
 		super.onLivingUpdate();
+		
+		if(!world.isRemote) {
+			if(this.isSkeleton()) {
+				if(world.canBlockSeeSky(this.getPosition().down()))
+					this.dataManager.set(SKELETON, false);
+			}
+		}
 	}
 
 }
