@@ -135,9 +135,9 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 			this.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(PItems.pirateHat));
 		if(this.getRank() == EnumPirateRank.CAPTAIN) {
 			this.setHeldItem(EnumHand.OFF_HAND, new ItemStack(Items.SHIELD));
-			this.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(PItems.captain_cutlass));
+			this.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(rand.nextBoolean() ? PItems.captain_cutlass : PItems.rapier));
 			this.getEntityAttribute(SharedMonsterAttributes.ARMOR).applyModifier(CAPTAIN_MOD);
-			this.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(PItems.pirateHat));
+			this.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(rand.nextDouble() < 0.5 ? PItems.barbossaHat : PItems.pirateHat));
 		}
 	}
 	
@@ -217,8 +217,7 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 		if(!world.isRemote) {
 			if(rand.nextDouble() < 0.5 + (0.1 * lootingModifier) && this.getHeldItemMainhand().getItem() != PItems.flintlock)
 				InventoryHelper.spawnItemStack(world, posX, posY, posZ, new ItemStack(this.getHeldItemMainhand().getItem()));
-			if(this.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem() == PItems.pirateHat)
-				InventoryHelper.spawnItemStack(world, posX, posY, posZ, new ItemStack(PItems.pirateHat));
+				InventoryHelper.spawnItemStack(world, posX, posY, posZ, new ItemStack(this.getItemStackFromSlot(EntityEquipmentSlot.HEAD).getItem()));
 		}
 			
 	}
@@ -227,18 +226,21 @@ public class EntityGhostPirate extends EntityMob implements IRangedAttackMob{
 	protected void dropEquipment(boolean wasRecentlyHit, int lootingModifier) {}
 
 	public static enum EnumPirateRank{
-		CAPTAIN("pirate_midship_002",
-				"pirate_midship_003"),
-		MATE("pirate_braced_002",
+		CAPTAIN(
+			"pirate_midship_002",
+			"pirate_midship_003"),
+		MATE(
+			"pirate_braced_002",
 			"pirate_braced_003",
 			"pirate_deckhand_004",
 			"pirate_midship_001",
 			"pirate_midship_004"),
-		DECKHAND("pirate_braced_001",
-				"pirate_braced_004",
-				"pirate_deckhand_001",
-				"pirate_deckhand_002",
-				"pirate_deckhand_003");
+		DECKHAND(
+			"pirate_braced_001",
+			"pirate_braced_004",
+			"pirate_deckhand_001",
+			"pirate_deckhand_002",
+			"pirate_deckhand_003");
 		
 		private ResourceLocation[] skin;
 		

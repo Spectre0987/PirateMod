@@ -9,7 +9,9 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec3d;
+import net.pirates.mod.config.PirateConfig;
 
 public class Helper {
 
@@ -55,5 +57,13 @@ public class Helper {
 		Tessellator.getInstance().draw();
 		GlStateManager.enableTexture2D();
 		GlStateManager.popMatrix();
+	}
+
+	public static boolean biomeEnabled(ResourceLocation key) {
+		for(String s : PirateConfig.worldGen.biomes) {
+			if(s.equals(key.toString()))
+				return true;
+		}
+		return false;
 	}
 }

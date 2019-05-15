@@ -53,4 +53,4 @@ entity.pirate.name=Ghost Pirate
 inventory.chest.pirate=Cursed Chest
 
 pirates.worldgen=World Gen
-pirates.worldgen.chance=1 in _ chance for ships to spawn in an ocean
+pirates.worldgen.chance=Percent chance that a ship will spawn in a chunk

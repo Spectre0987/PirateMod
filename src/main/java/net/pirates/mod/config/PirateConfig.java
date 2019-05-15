@@ -16,7 +16,12 @@ public class PirateConfig {
 	public static class WorldGen{
 		
 		@Config.LangKey("pirates.worldgen.chance")
-		public int chance = 500;
+		public int chance = 10;
+		
+		@Config.LangKey("pirates.worldgen.biomes")
+		public String[] biomes = {
+				"minecraft:deep_ocean"
+		};
 	}
 	
 	@EventBusSubscriber
