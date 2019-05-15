@@ -28,14 +28,15 @@ public class PItems {
 	public static Item hurdy_gurdy = register(new ItemHurdyGurdy(), "hurdy_gurdy");
 	public static Item rope = register(new ItemRope(), "rope");
 	public static Item dingy = register(new ItemESpawner(EntityDingy::new), "dingy");
-	public static Item dagger = register(new ItemSword(ToolMaterial.IRON), "dagger");
+	public static Item dagger = register(new ItemSword(ToolMaterial.IRON).setCreativeTab(Pirate.tab), "dagger");
 	public static Item pirateHat = register(new ItemPirateClothes(0), "hat");
 	public static Item barbossaHat = register(new ItemPirateClothes(1), "barbossa_hat");
 	public static Item bucket = register(new ItemDamageable(150), "bucket");
 	public static Item hammer = register(new ItemDamageable(150), "hammer");
 	public static Item flintlock_ball = register(new ItemBase(), "flintlock_ball");
-	public static Item captain_cutlass = register(new ItemSword(ToolMaterial.DIAMOND), "captain_cutlass");
+	public static Item captain_cutlass = register(new ItemSword(ToolMaterial.DIAMOND).setCreativeTab(Pirate.tab), "captain_cutlass");
 	public static Item glass = register(new ItemBase(), "glass_full");
+	public static Item rapier = register(new ItemMelee(ToolMaterial.IRON, 0.1), "rapier");
 	
 	public static void register() {
 		
