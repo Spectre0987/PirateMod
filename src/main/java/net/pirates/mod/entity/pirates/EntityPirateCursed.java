@@ -27,10 +27,10 @@ public class EntityPirateCursed extends EntityPirate{
 		this.tasks.addTask(0, new EntityAIWatchClosest(this, EntityPlayer.class, 30));
 		this.tasks.addTask(3, new EntityAIWander(this, 0.5));
 		this.setPathPriority(PathNodeType.DAMAGE_FIRE, 1.0F);
-		this.isImmuneToFire = true;
 		this.setRank(EnumPirateRank.DECKHAND);
 		this.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(PItems.cutlass));
 		this.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(PItems.pirateHat));
+		this.isImmuneToFire = true;
 	}
 	
 	@Override
@@ -49,8 +49,14 @@ public class EntityPirateCursed extends EntityPirate{
 		
 		if(!world.isRemote) {
 			if(this.isSkeleton()) {
-				if(world.canBlockSeeSky(this.getPosition().down()))
+				if(!world.canBlockSeeSky(this.getPosition()) || this.world.isDaytime()) {
 					this.dataManager.set(SKELETON, false);
+				}
+			}
+			else {
+				if(!this.world.isDaytime() && world.canBlockSeeSky(this.getPosition())) {
+					this.dataManager.set(SKELETON, true);
+				}
 			}
 		}
 	}
